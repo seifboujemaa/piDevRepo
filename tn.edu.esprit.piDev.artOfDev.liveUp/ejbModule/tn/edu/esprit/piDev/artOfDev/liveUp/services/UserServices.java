@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class UserServices implements UserServicesRemote, UserServicesLocal {
+	private  int a  ;
 
     /**
      * Default constructor. 
