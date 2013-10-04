@@ -119,6 +119,7 @@ public class Game implements Serializable {
 	}
 	
 	@OneToMany(mappedBy="game")
+	@JoinColumn(name="idGame")
 	public List<Event> getEvents() {
 		return events;
 	}
