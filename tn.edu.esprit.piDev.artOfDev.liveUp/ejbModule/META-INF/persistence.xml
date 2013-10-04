@@ -3,6 +3,7 @@
 	<persistence-unit name="tn.edu.esprit.piDev.artOfDev.liveUp">
 	<jta-data-source>java:/liveup</jta-data-source>
 	<properties>
+	<property name="hibernate.dialec" value="org.hibernate.dialect.MySQL"/>
 	<property name="hibernate.hbm2ddl.auto" value="create"/>
 	</properties>
 	</persistence-unit>
