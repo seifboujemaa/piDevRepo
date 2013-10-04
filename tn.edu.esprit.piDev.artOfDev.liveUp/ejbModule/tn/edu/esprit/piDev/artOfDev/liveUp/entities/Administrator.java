@@ -1,6 +1,10 @@
 package tn.edu.esprit.piDev.artOfDev.liveUp.entities;
 
-public class Administrator {
+import java.io.Serializable;
+
+public class Administrator implements Serializable {
+	
+	
 	
 	private int idAdmin;
 	private String login;
@@ -13,8 +17,6 @@ public class Administrator {
 	public Administrator(){
 		
 	}
-
-	
 	
 	
 
