@@ -13,6 +13,10 @@ public class User implements Serializable {
 
 	private int idUser;
 	private String login ;
+	private String pwd ;
+	private String firstName;
+	private String lastName;
+	private String email;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getIdUser() {
@@ -63,16 +67,11 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	private String pwd ;
-	private String firstName;
-	private String lastName;
-	private String email;
+	
 	
 	
 	private static final long serialVersionUID = 1L;
 
-	public User() {
-		super();
-	}
+	
    
 }
