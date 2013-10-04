@@ -8,6 +8,11 @@
 	<class>tn.edu.esprit.piDev.artOfDev.liveUp.entities.News</class>
 	<class>tn.edu.esprit.piDev.artOfDev.liveUp.entities.Journalist</class>
 	<class>tn.edu.esprit.piDev.artOfDev.liveUp.entities.Agent</class>
+	<class>tn.edu.esprit.piDev.artOfDev.liveUp.entities.Player</class>
+	<class>tn.edu.esprit.piDev.artOfDev.liveUp.entities.Stadium</class>
+	<class>tn.edu.esprit.piDev.artOfDev.liveUp.entities.Team</class>
+	<class>tn.edu.esprit.piDev.artOfDev.liveUp.entities.Game</class>
+	<class>tn.edu.esprit.piDev.artOfDev.liveUp.entities.Event</class>
 	<properties>
 	<property name="hibernate.dialec" value="org.hibernate.dialect.MySQL"/>
 	<property name="hibernate.hbm2ddl.auto" value="create"/>
