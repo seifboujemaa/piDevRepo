@@ -5,17 +5,17 @@ import javax.persistence.*;
 import tn.edu.esprit.piDev.artOfDev.liveUp.entities.User;
 
 /**
- * Entity implementation class for Entity: Administrator
+ * Entity implementation class for Entity: ChefEditor
  *
  */
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public class Administrator extends User implements Serializable {
+public class ChefEditor extends User implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 
-	public Administrator() {
+	public ChefEditor() {
 		super();
 	}
    

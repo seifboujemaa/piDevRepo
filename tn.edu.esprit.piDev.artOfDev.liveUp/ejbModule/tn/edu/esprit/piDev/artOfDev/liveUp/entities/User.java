@@ -18,7 +18,7 @@ public class User implements Serializable {
 	private String lastName;
 	private String email;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdUser() {
 		return idUser;
 	}
@@ -26,7 +26,8 @@ public class User implements Serializable {
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
-
+	
+     @Column(unique=true)
 	public String getLogin() {
 		return login;
 	}

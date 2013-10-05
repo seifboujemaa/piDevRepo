@@ -37,7 +37,7 @@ public class Game implements Serializable {
 		super();
 	}  
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdGame() {
 		return this.idGame;
 	}

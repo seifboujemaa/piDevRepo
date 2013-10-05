@@ -23,7 +23,8 @@ public class Article implements Serializable {
 	public Article() {
 		super();
 	}   
-	@Id    
+	@Id 
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdArticle() {
 		return this.idArticle;
 	}

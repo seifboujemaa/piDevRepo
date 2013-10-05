@@ -23,7 +23,8 @@ public class News implements Serializable {
 	public News() {
 		super();
 	}   
-	@Id    
+	@Id   
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdNews() {
 		return this.idNews;
 	}

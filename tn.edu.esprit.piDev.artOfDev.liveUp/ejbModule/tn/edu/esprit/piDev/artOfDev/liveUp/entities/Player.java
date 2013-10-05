@@ -26,7 +26,7 @@ public class Player implements Serializable {
 		super();
 	}   
 	@Id    
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 
 	public int getIntPlayer() {
 		return this.intPlayer;
