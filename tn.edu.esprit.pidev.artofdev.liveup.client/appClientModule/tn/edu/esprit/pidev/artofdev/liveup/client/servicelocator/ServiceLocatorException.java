@@ -1,4 +1,4 @@
-package tn.edu.esprit.pidev.artofdev.liveup.servicelocator;
+package tn.edu.esprit.pidev.artofdev.liveup.client.servicelocator;
 
 public class ServiceLocatorException extends RuntimeException {
 	

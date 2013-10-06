@@ -1,4 +1,4 @@
-package tn.edu.esprit.pidev.artofdev.liveup.client.chefeditor;
+package tn.edu.esprit.pidev.artofdev.liveup.client.Swing;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;

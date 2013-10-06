@@ -1,4 +1,4 @@
-package tn.edu.esprit.pidev.artofdev.liveup.servicelocator;
+package tn.edu.esprit.pidev.artofdev.liveup.client.servicelocator;
 
 import java.util.HashMap;
 import java.util.Map;
