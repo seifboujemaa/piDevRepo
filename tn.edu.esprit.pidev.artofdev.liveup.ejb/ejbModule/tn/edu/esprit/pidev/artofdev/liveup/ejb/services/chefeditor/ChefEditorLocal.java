@@ -22,6 +22,8 @@ public interface ChefEditorLocal {
 	public void declineArticle(Article article);
 	public List<News> viewNews();
 	public List<Article> viewsArticles();
+	public List<News> viewNewsUntreated();
+	public List<Article> viewArticlesUntreated();
 	public void disconnect();
 
 }

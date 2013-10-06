@@ -32,68 +32,76 @@ public class ChefEditor implements ChefEditorRemote, ChefEditorLocal {
 
 	@Override
 	public List<FreeLance> viewRequest() {
-		Query query=em.createQuery("select e from Employee e");
+		Query query=em.createQuery("select f from FreeLance f where f.status = true");
 		return query.getResultList();
 	}
 
 	@Override
 	public void acceptFreeLance(FreeLance freeLance) {
-		// TODO Auto-generated method stub
+		em.merge(freeLance);
 		
 	}
 
 	@Override
 	public void declineFreeLance(FreeLance freeLance) {
-		// TODO Auto-generated method stub
+		em.remove(em.merge(freeLance));
 		
 	}
 
 	@Override
 	public void deleteFreeLance(FreeLance freeLance) {
-		// TODO Auto-generated method stub
+		em.remove(em.merge(freeLance));
 		
 	}
 
 	@Override
 	public ChefEditor authentification(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		ChefEditor chefEditor=null;
+		Query query=em.createQuery("Select c from ChefEditor c where c.login=:l and c.passsword=:p ");
+		query.setParameter("l", login).setParameter("p", password);
+		try{
+			chefEditor=(ChefEditor) query.getSingleResult();
+		}catch(Exception e){
+			chefEditor=null;
+		}
+		return chefEditor;
+		
 	}
 
 	@Override
 	public void appointNews(News news) {
-		// TODO Auto-generated method stub
+		em.merge(news);
 		
 	}
 
 	@Override
 	public void appointArticle(Article article) {
-		// TODO Auto-generated method stub
+		em.merge(article);
 		
 	}
 
 	@Override
 	public void declineNews(News news) {
-		// TODO Auto-generated method stub
+		em.remove(em.merge(news));
 		
 	}
 
 	@Override
 	public void declineArticle(Article article) {
-		// TODO Auto-generated method stub
+		em.remove(em.merge(article));
 		
 	}
 
 	@Override
 	public List<News> viewNews() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query=em.createQuery("select n from News n where n.status = true");
+		return query.getResultList();
 	}
 
 	@Override
 	public List<Article> viewsArticles() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query=em.createQuery("select a from Article a where a.status = true");
+		return query.getResultList();
 	}
 
 	@Override
@@ -101,6 +109,19 @@ public class ChefEditor implements ChefEditorRemote, ChefEditorLocal {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public List<News> viewNewsUntreated() {
+		Query query=em.createQuery("select n from News n where n.status = false");
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Article> viewArticlesUntreated() {
+		Query query=em.createQuery("select a from Article a where a.status = false");
+		return query.getResultList();
+	}
+
 
 
     
