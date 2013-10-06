@@ -3,6 +3,9 @@ package tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
@@ -13,7 +16,8 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
  */
 @Stateless
 public class ChefEditor implements ChefEditorRemote, ChefEditorLocal {
-
+  @PersistenceContext
+	EntityManager em;
     
     public ChefEditor() {
         
@@ -21,14 +25,15 @@ public class ChefEditor implements ChefEditorRemote, ChefEditorLocal {
 
 	@Override
 	public List<FreeLance> viewFreeLances() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query=em.createQuery("select f from FreeLance f where f.status = false");
+		return query.getResultList();
+		
 	}
 
 	@Override
 	public List<FreeLance> viewRequest() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query=em.createQuery("select e from Employee e");
+		return query.getResultList();
 	}
 
 	@Override
