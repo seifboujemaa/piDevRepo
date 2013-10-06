@@ -3,6 +3,9 @@ package tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
@@ -13,7 +16,8 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
  */
 @Stateless
 public class Freelance implements FreelanceRemote, FreelanceLocal {
-
+@PersistenceContext
+EntityManager entityManager ;
     /**
      * Default constructor. 
      */
@@ -23,15 +27,18 @@ public class Freelance implements FreelanceRemote, FreelanceLocal {
 
 	@Override
 	public List<Article> viewArticle() {
-		// TODO Auto-generated method stub
-		return null;
+	Query query=entityManager.createQuery("select a from Article a");
+	return query.getResultList();
 	}
+		
+	
 
 	@Override
 	public List<News> viewNews() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query=entityManager.createQuery("select a from News a");
+		return query.getResultList();
 	}
+	
 
 	@Override
 	public FreeLance authentification(String login, String password) {
@@ -47,37 +54,37 @@ public class Freelance implements FreelanceRemote, FreelanceLocal {
 
 	@Override
 	public void addArticle(Article article) {
-		// TODO Auto-generated method stub
+		entityManager.persist(article);		
 		
 	}
 
 	@Override
 	public void addNews(News news) {
-		// TODO Auto-generated method stub
+		entityManager.persist(news);		
 		
 	}
 
 	@Override
 	public void modifyArticle(Article article) {
-		// TODO Auto-generated method stub
+		entityManager.merge(article);
 		
 	}
 
 	@Override
 	public void modifyNews(News news) {
-		// TODO Auto-generated method stub
+		entityManager.merge(news);
 		
 	}
 
 	@Override
 	public void deleteArticle(Article article) {
-		// TODO Auto-generated method stub
+		entityManager.remove(entityManager.merge(article));		
 		
 	}
 
 	@Override
 	public void deleteNews(News news) {
-		// TODO Auto-generated method stub
+		entityManager.remove(entityManager.merge(news));		
 		
 	}
 

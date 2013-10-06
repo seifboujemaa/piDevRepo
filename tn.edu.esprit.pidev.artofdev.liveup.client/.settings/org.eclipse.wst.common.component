@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="tn.edu.esprit.pidev.artofdev.liveup.client">
-        <wb-resource deploy-path="/" source-path="/appClientModule" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/" source-path="/appClientModule"/>
         <property name="java-output-path" value="/tn.edu.esprit.pidev.artofdev.liveup.client/build/classes"/>
     </wb-module>
 </project-modules>
