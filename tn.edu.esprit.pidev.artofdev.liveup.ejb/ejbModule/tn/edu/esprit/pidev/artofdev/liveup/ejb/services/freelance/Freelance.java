@@ -42,8 +42,15 @@ EntityManager entityManager ;
 
 	@Override
 	public FreeLance authentification(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		FreeLance freeLance=null;
+		Query query=entityManager.createQuery("Select f from FreeLance f where f.login=:l and f.password=:p and f.status = true ");
+		query.setParameter("l", login).setParameter("p", password);
+		try{
+			freeLance=(FreeLance) query.getSingleResult();
+		}catch(Exception e){
+			freeLance=null;
+		}
+		return freeLance;
 	}
 
 	@Override
