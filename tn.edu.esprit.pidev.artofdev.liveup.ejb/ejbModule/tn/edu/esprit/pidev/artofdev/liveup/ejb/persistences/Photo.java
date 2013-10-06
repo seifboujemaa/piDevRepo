@@ -15,6 +15,7 @@ public class Photo implements Serializable {
 	
 	private int idPhoto;
 	private Blob image;
+	private String description ;
 	
 	private Reporter reporter;
 	private Game game;
@@ -39,6 +40,12 @@ public class Photo implements Serializable {
 
 	public void setImage(Blob image) {
 		this.image = image;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	@ManyToOne
 	public Reporter getReporter() {

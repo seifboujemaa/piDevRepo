@@ -18,7 +18,7 @@ public class Event implements Serializable {
 	private int idEvent;
 	private String desciption;
 	private int minute;
-	private String []  type = {"corner" , "foul" , "offside" , "penalty" , "goal" , "red card" , "yellow card" , "injury" , "substitute" , "match over" , "half time" ,"other"};
+	private String type ;
 	
     private Agent agent;
     private Game game;
@@ -53,10 +53,10 @@ public class Event implements Serializable {
 	}
 	
 	
-	public String[] getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(String[] type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	@ManyToOne

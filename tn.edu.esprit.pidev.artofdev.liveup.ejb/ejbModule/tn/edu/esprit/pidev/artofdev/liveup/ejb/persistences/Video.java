@@ -15,6 +15,7 @@ public class Video implements Serializable {
 	
 	private int idVideo;
 	private String url;
+	private String description ;
 	
 	private Reporter reporter;
 	private Game game;
@@ -39,6 +40,12 @@ public class Video implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	@ManyToOne
 	public Reporter getReporter() {
