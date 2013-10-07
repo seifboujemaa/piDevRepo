@@ -21,19 +21,19 @@ public class JournalistServices implements JournalistServicesLocal,JournalistSer
 	}
 	
 	@Override
-	public void createEvent(Journalist journalist) {
+	public void createJournalist(Journalist journalist) {
 		entityManager.persist(journalist);
 		
 	}
 
 	@Override
-	public void updateEvent(Journalist journalist) {
+	public void updateJournalist(Journalist journalist) {
 		entityManager.merge(journalist);
 		
 	}
 
 	@Override
-	public void deleteEvent(Journalist journalist) {
+	public void deleteJournalist(Journalist journalist) {
 		entityManager.remove(entityManager.merge(journalist));
 		
 	}
