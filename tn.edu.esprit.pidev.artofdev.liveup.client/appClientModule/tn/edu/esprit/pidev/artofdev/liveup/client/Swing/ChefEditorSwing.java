@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
 import java.awt.ScrollPane;
 import java.awt.Button;
+import javax.swing.table.DefaultTableModel;
 
 public class ChefEditorSwing extends JFrame {
 
@@ -88,7 +89,17 @@ public class ChefEditorSwing extends JFrame {
 		panel.add(scrollPane);
 		
 		table = new JTable();
-		table.setBounds(123, 109, 1, 1);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column", "New column"
+			}
+		));
+		table.setBounds(0, 0, 666, 223);
 		panel.add(table);
 		
 		JPanel panel_3 = new JPanel();
