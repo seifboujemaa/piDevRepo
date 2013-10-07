@@ -3,6 +3,9 @@ package tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Photo;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Video;
@@ -13,6 +16,8 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Video;
 @Stateless
 public class Reporter implements ReporterRemote, ReporterLocal {
 
+	@PersistenceContext
+	EntityManager em;
     /**
      * Default constructor. 
      */
@@ -46,20 +51,28 @@ public class Reporter implements ReporterRemote, ReporterLocal {
 
 	@Override
 	public void deleteVideo(Video video) {
-		// TODO Auto-generated method stub
+		em.remove(em.merge(video));
 		
 	}
 
 	@Override
 	public void deletePhoto(Photo photo) {
-		// TODO Auto-generated method stub
+		em.remove(em.merge(photo));
 		
 	}
 
 	@Override
 	public Reporter authentification(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		Reporter reporter=null;
+		Query query=em.createQuery("Select r from Reporter r where r.login=:l and r.password=:p ");
+		query.setParameter("l", login).setParameter("p", password);
+		try{
+			reporter=(Reporter) query.getSingleResult();
+		}catch(Exception e){
+			reporter=null;
+		}
+		return reporter;
+		
 	}
 
 	@Override
