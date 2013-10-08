@@ -10,11 +10,19 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.PlayerServicesDelegate;
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.TeamServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Player;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JLabel;
+
+import org.hibernate.metamodel.source.annotations.entity.IdType;
+import javax.swing.JComboBox;
 
 public class AddPlayer extends JFrame {
 
@@ -25,7 +33,16 @@ public class AddPlayer extends JFrame {
 	private JTextField PlayTime;
 	private JTextField RedCards;
 	private JTextField YellowCards;
-	private JTextField team;
+	private JComboBox Teams ;
+	
+	
+	public JComboBox getTeams() {
+		return Teams;
+	}
+
+	public void setTeams(JComboBox teams) {
+		Teams = teams;
+	}
 
 	/**
 	 * Launch the application.
@@ -47,6 +64,8 @@ public class AddPlayer extends JFrame {
 	 * Create the frame.
 	 */
 	public AddPlayer() {
+		final TeamServicesDelegate teamService = new TeamServicesDelegate();
+
 	 final PlayerServicesDelegate playerService = new PlayerServicesDelegate();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 772, 456);
@@ -60,10 +79,25 @@ public class AddPlayer extends JFrame {
 		contentPane.add(FirstName);
 		FirstName.setColumns(10);
 		
+	
+		
 		LastName = new JTextField();
 		LastName.setBounds(140, 55, 86, 20);
 		contentPane.add(LastName);
 		LastName.setColumns(10);
+		
+		final JComboBox Teams = new JComboBox();
+		List<Team> teamList = new ArrayList<Team>();
+		teamList = teamService.findAllTeam();
+		for(Team team : teamList )
+		{
+			Teams.addItem(team.getName());
+		}
+		
+		Teams.setBounds(140, 107, 126, 20);
+		contentPane.add(Teams);
+		
+		
 		
 		JButton Add = new JButton("Add");
 		Add.addActionListener(new ActionListener() {
@@ -77,6 +111,11 @@ public class AddPlayer extends JFrame {
 				
 				
 				
+				Team teamPlayer = new Team() ;
+				teamPlayer = TeamServicesDelegate.findTeamByName((String)Teams.getSelectedItem());
+				
+			 
+			
 				Player player = new Player() ;
 				
 				player.setFirstName(firstName);
@@ -85,6 +124,7 @@ public class AddPlayer extends JFrame {
 				player.setPlayTime(playTime);
 				player.setRedCards(redCards);
 				player.setYellowCards(yellowCards);
+				player.setTeam(teamPlayer);
 				
 				playerService.create(player) ;
 				
@@ -115,11 +155,6 @@ public class AddPlayer extends JFrame {
 		contentPane.add(YellowCards);
 		YellowCards.setColumns(10);
 		
-		team = new JTextField();
-		team.setBounds(140, 107, 86, 20);
-		contentPane.add(team);
-		team.setColumns(10);
-		
 		JLabel lblNewLabel = new JLabel("First Name ");
 		lblNewLabel.setBounds(27, 14, 65, 17);
 		contentPane.add(lblNewLabel);
@@ -147,5 +182,8 @@ public class AddPlayer extends JFrame {
 		JLabel lblNewLabel_6 = new JLabel("Team");
 		lblNewLabel_6.setBounds(27, 110, 86, 14);
 		contentPane.add(lblNewLabel_6);
+		
+		
+		
 	}
 }
