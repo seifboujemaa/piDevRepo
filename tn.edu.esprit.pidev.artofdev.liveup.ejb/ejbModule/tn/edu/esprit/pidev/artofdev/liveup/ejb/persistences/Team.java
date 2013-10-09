@@ -92,11 +92,18 @@ public class Team implements Serializable {
    public void setGame(Game game) {
 	this.game = game;
 }
-   @OneToMany(mappedBy="team")
+   @OneToMany(mappedBy="team",cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
    public List<Player> getPlayers() {
 	return players;
 }
    public void setPlayers(List<Player> players) {
 	this.players = players;
 }
+   
+   public void affectTeamToPlayers(List<Player> players){
+		for(Player player:players){
+			player.setTeam(this);
+			this.getPlayers().add(player);
+		}
+	}
 }

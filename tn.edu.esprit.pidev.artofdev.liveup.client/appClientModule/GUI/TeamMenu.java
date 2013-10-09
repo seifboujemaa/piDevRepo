@@ -17,13 +17,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 
-public class AddTeam extends JFrame {
+public class TeamMenu extends JFrame {
 	
 
 	private JPanel contentPane;
-	private AddPlayer addPlayer = new AddPlayer() ;
-	private AddTeamStat addStat = new AddTeamStat () ;
-	private JTextField textField;
+	private UpdateTeamStat addStat = new UpdateTeamStat () ;
+	private CreateTeam createTeam = new CreateTeam() ;
+	private AddTeamPlayers createNewTeam = new AddTeamPlayers();
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +32,7 @@ public class AddTeam extends JFrame {
 			public void run() {
 				try {
 					
-					AddTeam frame = new AddTeam();
+					TeamMenu frame = new TeamMenu();
 					frame.setVisible(true);
 					
 				} catch (Exception e) {
@@ -45,60 +45,54 @@ public class AddTeam extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddTeam() {
+	public TeamMenu() {
 		final TeamServicesDelegate teamService = new TeamServicesDelegate();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 509, 269);
+		setBounds(100, 100, 509, 168);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTeamName = new JLabel("Team Name ");
-		lblTeamName.setBounds(108, 35, 148, 14);
-		contentPane.add(lblTeamName);
-		
 		JButton btnNewButton = new JButton("Add players");
 		btnNewButton.addActionListener(new ActionListener() {
 			public  void actionPerformed(ActionEvent e) {
+				createNewTeam.show();
+				
+				
 			
-				addPlayer.show();
+			
 				
 			}
 		});
-		btnNewButton.setBounds(53, 162, 89, 23);
+		btnNewButton.setBounds(52, 43, 89, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Update stats");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = (String) textField.getText();
-				addStat.getLblNewLabel_3().setText(name);
+				
 				addStat.show();
+				
+				
 				
 				
 			}
 		});
-		btnNewButton_1.setBounds(191, 162, 109, 23);
+		btnNewButton_1.setBounds(183, 43, 109, 23);
 		contentPane.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("Create Team");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			      String name = (String) textField.getText();
-			      Team team = new Team() ;
-			      team.setName(name);
-			      teamService.create(team);
+				createTeam.show();
+			     
+			     
 			      
 			      
 			}
 		});
-		btnNewButton_2.setBounds(343, 162, 109, 23);
+		btnNewButton_2.setBounds(334, 43, 109, 23);
 		contentPane.add(btnNewButton_2);
-		
-		textField = new JTextField();
-		textField.setBounds(214, 32, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
 	}
 }

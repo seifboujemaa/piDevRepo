@@ -15,24 +15,22 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
 
-public class AddTeamStat extends JFrame {
+import javax.swing.JComboBox;
+
+public class UpdateTeamStat extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField Victories;
 	private JTextField Draws;
 	private JTextField Defeats;
-	private JLabel lblNewLabel_3;
+	private JComboBox teams ;
 	
 	
 
-	public JLabel getLblNewLabel_3() {
-		return lblNewLabel_3;
-	}
-
-	public void setLblNewLabel_3(JLabel lblNewLabel_3) {
-		this.lblNewLabel_3 = lblNewLabel_3;
-	}
+	
 
 	/**
 	 * Launch the application.
@@ -41,7 +39,7 @@ public class AddTeamStat extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddTeamStat frame = new AddTeamStat();
+					UpdateTeamStat frame = new UpdateTeamStat();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,8 +51,8 @@ public class AddTeamStat extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddTeamStat() {
-		final TeamServicesDelegate teamService = new TeamServicesDelegate() ;
+	public UpdateTeamStat() {
+		final  TeamServicesDelegate teamService = new TeamServicesDelegate() ;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 454, 371);
 		contentPane = new JPanel();
@@ -66,6 +64,7 @@ public class AddTeamStat extends JFrame {
 		Victories.setBounds(130, 45, 46, 20);
 		contentPane.add(Victories);
 		Victories.setColumns(10);
+		
 		
 		Draws = new JTextField();
 		Draws.setBounds(130, 119, 46, 20);
@@ -89,14 +88,47 @@ public class AddTeamStat extends JFrame {
 		lblNewLabel_2.setBounds(32, 188, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
+		
+		final JComboBox teams = new JComboBox();
+		teams.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Team  teamSelected = teamService.findTeamByName((String)teams.getSelectedItem());
+				Victories.setText(String.valueOf(teamSelected.getVictories()));
+				Defeats.setText(String.valueOf(teamSelected.getDefeats()));
+				Draws.setText(String.valueOf(teamSelected.getDraws()));
+				
+			}
+		});
+		teams.setBounds(249, 32, 134, 20);
+		contentPane.add(teams);
+		
+		List<Team> teamsSelect = new ArrayList<Team>();
+		teamsSelect= teamService.findAllTeam();
+		for(Team team : teamsSelect)
+		{
+			teams.addItem(team.getName());
+		}
+		
+		 
+		
+		
+		
+	
+		
+		
 		JButton btnNewButton = new JButton("Ok");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Team team=new Team();
+				team = teamService.findTeamByName((String)teams.getSelectedItem());
+				
 				int victories = Integer.parseInt(Victories.getText());
 				int draws = Integer.parseInt(Draws.getText());
 				int defeats = Integer.parseInt(Defeats.getText());
 				
-				Team team = teamService.findTeamByName(lblNewLabel_3.getText());
+				
+				
 				team.setDraws(draws);
 				team.setDefeats(defeats);
 				team.setVictories(victories);
@@ -111,8 +143,7 @@ public class AddTeamStat extends JFrame {
 		btnNewButton.setBounds(249, 277, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(227, 25, 173, 14);
-		contentPane.add(lblNewLabel_3);
+		
+		
 	}
 }
