@@ -6,10 +6,19 @@ import javax.ejb.Remote;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 @Remote
 public interface FreelanceRemote {
+	
+	
+	public void createFreelance(Freelance freelance);
+	public void updateFreelance(Freelance freelance);
+	public void deleteFreelance(Freelance freelance);
+	public FreeLance findFreelanceById(int idFreelance);
+	public List<Freelance> findAllFreelance(); 
+	
 	public List<Article> viewArticle();
 	public List<News> viewNews();
 	public FreeLance authentification(String login,String password);

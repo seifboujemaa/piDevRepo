@@ -10,6 +10,13 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 @Local
 public interface FreelanceLocal {
+	
+	
+	public void createFreelance(Freelance freelance);
+	public void updateFreelance(Freelance freelance);
+	public void deleteFreelance(Freelance freelance);
+	public FreeLance findFreelanceById(int idFreelance);
+	public List<Freelance> findAllFreelance(); 
 	public List<Article> viewArticle();
 	public List<News> viewNews();
 	public FreeLance authentification(String login,String password);

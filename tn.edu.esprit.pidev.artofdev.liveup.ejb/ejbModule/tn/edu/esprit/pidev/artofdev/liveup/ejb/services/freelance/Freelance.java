@@ -95,4 +95,34 @@ EntityManager entityManager ;
 		
 	}
 
+	@Override
+	public void createFreelance(Freelance freelance) {
+		entityManager.persist(freelance);
+		
+	}
+
+	@Override
+	public void updateFreelance(Freelance freelance) {
+		entityManager.merge(freelance);
+		
+	}
+
+	@Override
+	public void deleteFreelance(Freelance freelance) {
+		entityManager.remove(entityManager.merge(freelance));
+		
+	}
+
+	@Override
+	public FreeLance findFreelanceById(int idFreelance) {
+		FreeLance freeLance= entityManager.find(FreeLance.class, idFreelance);
+		return freeLance;
+	}
+
+	@Override
+	public List<Freelance> findAllFreelance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
