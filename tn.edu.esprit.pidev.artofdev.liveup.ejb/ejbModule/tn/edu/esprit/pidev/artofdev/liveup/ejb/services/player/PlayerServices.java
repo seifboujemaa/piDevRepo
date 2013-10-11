@@ -57,8 +57,8 @@ public class PlayerServices implements PlayerServicesRemote, PlayerServicesLocal
 	}
 
 	@Override
-	public List<Player> findPlayerByTeam(String team) {
-		Query query=entityManager.createQuery("select e from Player g where team='" + team + "'  " );
+	public List<Player> findPlayerByTeam(int  idTeam) {
+		Query query=entityManager.createQuery("select g from Player g where team_idTeam='" + idTeam + "'  " );
 		return query.getResultList();	
 	}
 

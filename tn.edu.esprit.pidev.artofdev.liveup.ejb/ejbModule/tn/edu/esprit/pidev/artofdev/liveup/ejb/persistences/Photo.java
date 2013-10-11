@@ -14,7 +14,7 @@ public class Photo implements Serializable {
 
 	
 	private int idPhoto;
-	private Blob image;
+	private Byte[] image;
 	private String description ;
 	
 	private Reporter reporter;
@@ -33,12 +33,12 @@ public class Photo implements Serializable {
 
 	public void setIdPhoto(int idPhoto) {
 		this.idPhoto = idPhoto;
-	}   
-	public Blob getImage() {
-		return this.image;
+	}  
+	@Lob
+       public Byte[] getImage() {
+		return image;
 	}
-
-	public void setImage(Blob image) {
+       public void setImage(Byte[] image) {
 		this.image = image;
 	}
 	public String getDescription() {

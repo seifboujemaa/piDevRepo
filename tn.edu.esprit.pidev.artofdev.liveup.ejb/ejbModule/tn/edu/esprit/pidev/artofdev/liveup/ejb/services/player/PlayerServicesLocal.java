@@ -13,6 +13,6 @@ public interface PlayerServicesLocal {
 	public void deletePlayer(Player player);
 	public Player findPlayerById(int idPlayer);
 	public List<Player> findAllPlayer();
-	public List<Player> findPlayerByTeam(String team);
+	public List<Player> findPlayerByTeam(int idTeam);
 
 }

@@ -2,6 +2,7 @@ package tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class Game implements Serializable {
 	private int idGame;
 	private int team1Goals;
 	private int team2Goals;
-	private String date;
+	private Date date;
 	private String time;
 	private String refree;
 	private String type;
@@ -60,10 +61,11 @@ public class Game implements Serializable {
 	public void setTeam2Goals(int team2Goals) {
 		this.team2Goals = team2Goals;
 	}
-	public String getDate() {
+	
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getTime() {
@@ -129,7 +131,7 @@ public class Game implements Serializable {
 	public void setStadium(Stadium stadium) {
 		this.stadium = stadium;
 	}
-	@OneToMany(mappedBy="game")
+	@OneToMany(mappedBy="game",cascade=CascadeType.ALL)
 	public List<Team> getTeams() {
 		return teams;
 	}
@@ -137,5 +139,12 @@ public class Game implements Serializable {
 	public void setTeams(List<Team> teams) {
 		this.teams = teams;
 	}
+	
+	 public void affectGameToTeams(List<Team> teams){
+			for(Team team:teams){
+				team.setGame(this);
+				this.getTeams().add(team);
+			}
+		}
    
 }

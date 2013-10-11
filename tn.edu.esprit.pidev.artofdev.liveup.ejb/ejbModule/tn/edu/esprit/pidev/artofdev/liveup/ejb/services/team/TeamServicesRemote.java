@@ -12,6 +12,7 @@ public interface TeamServicesRemote {
 	public void updateTeam(Team team);
 	public void deleteTeam(Team team);
 	public Team findTeamById(int idTeam);
+	public Team findTeamByName(String nameTeam);
 	public List<Team> findAllTeam();
 
 
