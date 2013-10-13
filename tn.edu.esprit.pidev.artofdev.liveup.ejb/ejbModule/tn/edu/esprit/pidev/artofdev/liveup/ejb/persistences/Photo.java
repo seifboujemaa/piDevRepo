@@ -14,7 +14,7 @@ public class Photo implements Serializable {
 
 	
 	private int idPhoto;
-	private Byte[] image;
+	private byte[] image;
 	private String description ;
 	
 	private Reporter reporter;
@@ -35,11 +35,11 @@ public class Photo implements Serializable {
 		this.idPhoto = idPhoto;
 	}  
 	@Lob
-       public Byte[] getImage() {
+       public byte[] getImage() {
 		return image;
 	}
-       public void setImage(Byte[] image) {
-		this.image = image;
+       public void setImage(byte[] bs) {
+		this.image = bs;
 	}
 	public String getDescription() {
 		return description;
