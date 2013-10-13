@@ -81,7 +81,7 @@ public class ChefEditorArticleSwing extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 649, 409);
+		setBounds(100, 100, 755, 409);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -159,11 +159,28 @@ public class ChefEditorArticleSwing extends JFrame {
 				table.setModel(new DefaultTableModel(data,new String[] {"ID", "Title", "Paragraph",  "Type","Day","status"}));
 			}
 		});
-		btnRefrech.setBounds(198, 0, 89, 23);
+		btnRefrech.setBounds(297, 0, 89, 23);
 		panel_1.add(btnRefrech);
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setBounds(514, 0, 89, 23);
 		panel_1.add(btnLogout);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setLayout(null);
+		panel_2.setBounds(635, 11, 104, 314);
+		contentPane.add(panel_2);
+		
+		JButton button = new JButton("News");
+		button.setBounds(10, 89, 89, 23);
+		panel_2.add(button);
+		
+		JButton button_1 = new JButton("FreeLance");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		button_1.setBounds(10, 146, 89, 23);
+		panel_2.add(button_1);
 	}
 }

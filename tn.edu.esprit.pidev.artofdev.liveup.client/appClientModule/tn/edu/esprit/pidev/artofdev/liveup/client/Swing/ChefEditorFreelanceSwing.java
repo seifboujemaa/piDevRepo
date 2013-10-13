@@ -84,7 +84,7 @@ public class ChefEditorFreelanceSwing extends JFrame {
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 649, 409);
+		setBounds(100, 100, 742, 409);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -170,5 +170,22 @@ public class ChefEditorFreelanceSwing extends JFrame {
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setBounds(514, 0, 89, 23);
 		panel_1.add(btnLogout);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBounds(622, 11, 94, 314);
+		contentPane.add(panel_2);
+		panel_2.setLayout(null);
+		
+		JButton btnNewButton = new JButton("News");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(10, 89, 89, 23);
+		panel_2.add(btnNewButton);
+		
+		JButton btnArticles = new JButton("Articles");
+		btnArticles.setBounds(10, 146, 89, 23);
+		panel_2.add(btnArticles);
 	}
 }
