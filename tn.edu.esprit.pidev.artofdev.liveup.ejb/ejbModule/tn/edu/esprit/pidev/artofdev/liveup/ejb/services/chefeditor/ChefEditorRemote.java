@@ -26,5 +26,9 @@ public interface ChefEditorRemote {
 	public List<News> viewNewsUntreated();
 	public List<Article> viewArticlesUntreated();
 	public void disconnect();
+	public List<FreeLance> findAllFreelances();
+	public List<News> findAllNews();
+	public List<Article> findAllArticles();
+
 
 }

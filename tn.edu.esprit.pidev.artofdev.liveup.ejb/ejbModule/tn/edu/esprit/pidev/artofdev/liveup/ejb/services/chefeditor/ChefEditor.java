@@ -122,6 +122,24 @@ public class ChefEditor implements ChefEditorRemote, ChefEditorLocal {
 		return query.getResultList();
 	}
 
+	@Override
+	public List<FreeLance> findAllFreelances() {
+		Query query=em.createQuery("select f from FreeLance f ");
+		return query.getResultList();
+	}
+
+	@Override
+	public List<News> findAllNews() {
+		Query query=em.createQuery("select n from News n ");
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Article> findAllArticles() {
+		Query query=em.createQuery("select a from Article a");
+		return query.getResultList();
+	}
+
 
 
     
