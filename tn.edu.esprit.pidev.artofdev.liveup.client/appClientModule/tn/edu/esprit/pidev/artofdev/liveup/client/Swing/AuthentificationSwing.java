@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.ChefEditor;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.User;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditorRemote;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.user.UserServicesRemote;
@@ -21,6 +22,8 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.user.UserServicesRemote;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+
+import com.sun.xml.internal.ws.org.objectweb.asm.Label;
 
 public class AuthentificationSwing extends JFrame {
 
@@ -89,9 +92,17 @@ public class AuthentificationSwing extends JFrame {
 				User user =remote.authentification(textField.getText(), passwordField.getText());
 				if(user!=null){
 					if(user instanceof ChefEditor)
-						System.out.println("connexion  chef editor ");
+						 {new ChefEditorArticleSwing().setVisible(true);
+		                 setVisible(false);}
+					if(user instanceof Reporter){
+					new ReporterPhotoViewDeleteSwing().setVisible(true);
+	                setVisible(false);}
 					}
-				else {System.out.println("failed ! ");}
+				else {JLabel label = new JLabel("");
+				label.setBounds(113, 190, 217, 14);
+				contentPane.add(label);
+				label.setText("Login  failed !");
+				}
 			} 
 				
 		
@@ -102,5 +113,9 @@ public class AuthentificationSwing extends JFrame {
 		passwordField = new JPasswordField();
 		passwordField.setBounds(138, 98, 140, 20);
 		contentPane.add(passwordField);
+		
+//		JLabel label = new JLabel("");
+//		label.setBounds(113, 190, 217, 14);
+//		contentPane.add(label);
 	}
 }

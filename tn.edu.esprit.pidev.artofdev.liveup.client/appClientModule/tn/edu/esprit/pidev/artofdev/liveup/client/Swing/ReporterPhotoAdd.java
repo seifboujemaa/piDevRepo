@@ -136,6 +136,8 @@ public class ReporterPhotoAdd extends JFrame {
 		JButton btnNewButton_2 = new JButton("Return");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new ReporterPhotoViewDeleteSwing().setVisible(true);
+                setVisible(false);
 			}
 		});
 		btnNewButton_2.setBounds(145, 11, 99, 33);

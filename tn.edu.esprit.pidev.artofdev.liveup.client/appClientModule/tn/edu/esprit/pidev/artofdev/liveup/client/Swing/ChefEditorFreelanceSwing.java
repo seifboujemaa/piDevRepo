@@ -168,6 +168,12 @@ public class ChefEditorFreelanceSwing extends JFrame {
 		panel_1.add(btnRefrech);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new AuthentificationSwing().setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnLogout.setBounds(514, 0, 89, 23);
 		panel_1.add(btnLogout);
 		
@@ -179,12 +185,21 @@ public class ChefEditorFreelanceSwing extends JFrame {
 		JButton btnNewButton = new JButton("News");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				new ChefEditorNewsSwing().setVisible(true);
+                setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(10, 89, 89, 23);
 		panel_2.add(btnNewButton);
 		
 		JButton btnArticles = new JButton("Articles");
+		btnArticles.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ChefEditorArticleSwing().setVisible(true);
+                setVisible(false);
+				
+			}
+		});
 		btnArticles.setBounds(10, 146, 89, 23);
 		panel_2.add(btnArticles);
 	}

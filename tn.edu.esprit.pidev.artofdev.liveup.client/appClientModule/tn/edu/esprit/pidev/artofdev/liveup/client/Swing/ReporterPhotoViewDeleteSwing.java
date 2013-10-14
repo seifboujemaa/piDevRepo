@@ -97,6 +97,12 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton btnAddPhoto = new JButton("Add photo");
+		btnAddPhoto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ReporterPhotoAdd().setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnAddPhoto.setBounds(0, 0, 89, 23);
 		panel_1.add(btnAddPhoto);
 		
@@ -113,6 +119,12 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		panel_1.add(btnDeletePhoto);
 		
 		JButton btnLogout = new JButton("Logout");
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new AuthentificationSwing().setVisible(true);
+                setVisible(false);
+			}
+		});
 		btnLogout.setBounds(427, 0, 89, 23);
 		panel_1.add(btnLogout);
 		
