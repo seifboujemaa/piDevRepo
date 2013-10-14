@@ -98,6 +98,19 @@ public class ReporterPhotoAdd extends JFrame {
 				File f = fc.getSelectedFile();
                 filepath = f.getAbsolutePath();
                 System.out.println(filepath);
+                
+                JPanel panel_2 = new JPanel();
+        		panel_2.setBounds(296, 11, 343, 270);
+        		contentPane.add(panel_2);
+        		panel_2.setLayout(null);
+        		
+        		JLabel label = new JLabel("");
+        		label.setBounds(10, 25, 276, 223);
+        		panel_2.add(label);
+        		
+        		ImageIcon icon = new ImageIcon( filepath);
+                label.setIcon(icon);
+                panel_2.add(label);
                
                
 			}
@@ -105,14 +118,14 @@ public class ReporterPhotoAdd extends JFrame {
 		btnNewButton.setBounds(0, 0, 256, 34);
 		panel_1.add(btnNewButton);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(296, 11, 343, 270);
-		contentPane.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JLabel label = new JLabel("");
-		label.setBounds(10, 25, 276, 223);
-		panel_2.add(label);
+//		JPanel panel_2 = new JPanel();
+//		panel_2.setBounds(296, 11, 343, 270);
+//		contentPane.add(panel_2);
+//		panel_2.setLayout(null);
+//		
+//		JLabel label = new JLabel("");
+//		label.setBounds(10, 25, 276, 223);
+//		panel_2.add(label);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(296, 292, 343, 44);
