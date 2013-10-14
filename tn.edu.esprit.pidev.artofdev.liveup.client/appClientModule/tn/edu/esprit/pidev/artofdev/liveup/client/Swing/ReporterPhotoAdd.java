@@ -141,6 +141,8 @@ public class ReporterPhotoAdd extends JFrame {
 			     photo.setDescription(textArea.getText());
 				photo.setImage(remote.imageToByte(file));
 		         remote.addPhoto(photo);
+		         new ReporterPhotoViewDeleteSwing().setVisible(true);
+		         setVisible(false);
 		         }
 		});
 		btnNewButton_1.setBounds(27, 11, 108, 33);
