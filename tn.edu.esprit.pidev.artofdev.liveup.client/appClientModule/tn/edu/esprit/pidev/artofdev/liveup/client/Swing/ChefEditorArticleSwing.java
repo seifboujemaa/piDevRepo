@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.ChefEditorServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
@@ -50,32 +51,34 @@ public class ChefEditorArticleSwing extends JFrame {
 	 */
 	public ChefEditorArticleSwing() {
 		
+		final ChefEditorServicesDelegate chefEditorDelegate = new ChefEditorServicesDelegate();
+		
 		 	
-		try {
-			Context context= new InitialContext();
-		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/ChefEditor!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditorRemote");
-		remote = (ChefEditorRemote) o;
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		List<Article> articles= new ArrayList<Article>();
-		articles = remote.findAllArticles();
-		
-		
-		Object[][] data = {};
-		 data = new Object[articles.size()][6];
-	        int i = 0;
-	        for (Article article :  articles) {
-	            data[i][0] = article.getIdArticle();
-	            data[i][1] = article.getTitle();
-	            data[i][2] = article.getParagraph();
-	            data[i][3] = article.getType();
-	            data[i][4] = article.getDay();
-	            data[i][5] = article.isStatus();
-	         
-	            i++;
-	        }
+//		try {
+//			Context context= new InitialContext();
+//		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/ChefEditor!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditorRemote");
+//		remote = (ChefEditorRemote) o;
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		List<Article> articles= new ArrayList<Article>();
+//		articles = remote.findAllArticles();
+//		
+//		
+//		Object[][] data = {};
+//		 data = new Object[articles.size()][6];
+//	        int i = 0;
+//	        for (Article article :  articles) {
+//	            data[i][0] = article.getIdArticle();
+//	            data[i][1] = article.getTitle();
+//	            data[i][2] = article.getParagraph();
+//	            data[i][3] = article.getType();
+//	            data[i][4] = article.getDay();
+//	            data[i][5] = article.isStatus();
+//	         
+//	            i++;
+//	        }
 		
 		
 		
@@ -98,7 +101,8 @@ public class ChefEditorArticleSwing extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(data,new String[] {"ID", "Title", "Paragraph",  "Type","Day","status"}));
+		ChefEditorServicesDelegate.ListArticles(table);
+		//table.setModel(new DefaultTableModel(data,new String[] {"ID", "Title", "Paragraph",  "Type","Day","status"}));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 336, 613, 24);
@@ -108,15 +112,16 @@ public class ChefEditorArticleSwing extends JFrame {
 		JButton btnAccept = new JButton("Accept");
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
-				Article article = new Article();
-				article.setIdArticle(var);
-				article.setTitle(table.getValueAt(table.getSelectedRow(), 1).toString());
-				article.setParagraph(table.getValueAt(table.getSelectedRow(), 2).toString());
-				article.setType(table.getValueAt(table.getSelectedRow(), 3).toString());
-				article.setDay(table.getValueAt(table.getSelectedRow(), 4).toString());
-				article.setStatus(true);
-				remote.appointArticle(article);
+				ChefEditorServicesDelegate.AcceptArticle(table);
+//				Integer var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+//				Article article = new Article();
+//				article.setIdArticle(var);
+//				article.setTitle(table.getValueAt(table.getSelectedRow(), 1).toString());
+//				article.setParagraph(table.getValueAt(table.getSelectedRow(), 2).toString());
+//				article.setType(table.getValueAt(table.getSelectedRow(), 3).toString());
+//				article.setDay(table.getValueAt(table.getSelectedRow(), 4).toString());
+//				article.setStatus(true);
+//				remote.appointArticle(article);
 			}
 		});
 		btnAccept.setBounds(0, 0, 89, 23);
@@ -125,10 +130,11 @@ public class ChefEditorArticleSwing extends JFrame {
 		JButton btnDecline = new JButton("Decline");
 		btnDecline.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
-				Article article  = new Article();
-				article.setIdArticle(var);
-				remote.declineArticle(article);
+				chefEditorDelegate.DeclineArticle(table);
+//				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+//				Article article  = new Article();
+//				article.setIdArticle(var);
+//				remote.declineArticle(article);
 			}
 		});
 		btnDecline.setBounds(99, 0, 89, 23);
@@ -137,26 +143,28 @@ public class ChefEditorArticleSwing extends JFrame {
 		JButton btnRefrech = new JButton("Refrech");
 		btnRefrech.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				List<Article> articles= new ArrayList<Article>();
-				articles = remote.findAllArticles();
 				
-				
-				Object[][] data = {};
-				 data = new Object[articles.size()][6];
-			        int i = 0;
-			        for (Article article :  articles) {
-			            data[i][0] = article.getIdArticle();
-			            data[i][1] = article.getTitle();
-			            data[i][2] = article.getParagraph();
-			            data[i][3] = article.getType();
-			            data[i][4] = article.getDay();
-			            data[i][5] = article.isStatus();
-			         
-			            i++;
-			        }
-				
-				
-				table.setModel(new DefaultTableModel(data,new String[] {"ID", "Title", "Paragraph",  "Type","Day","status"}));
+				ChefEditorServicesDelegate.ListArticles(table);
+//				List<Article> articles= new ArrayList<Article>();
+//				articles = remote.findAllArticles();
+//				
+//				
+//				Object[][] data = {};
+//				 data = new Object[articles.size()][6];
+//			        int i = 0;
+//			        for (Article article :  articles) {
+//			            data[i][0] = article.getIdArticle();
+//			            data[i][1] = article.getTitle();
+//			            data[i][2] = article.getParagraph();
+//			            data[i][3] = article.getType();
+//			            data[i][4] = article.getDay();
+//			            data[i][5] = article.isStatus();
+//			         
+//			            i++;
+//			        }
+//				
+//				
+//				table.setModel(new DefaultTableModel(data,new String[] {"ID", "Title", "Paragraph",  "Type","Day","status"}));
 			}
 		});
 		btnRefrech.setBounds(297, 0, 89, 23);

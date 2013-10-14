@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.ReporterServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Photo;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.ReporterRemote;
 
@@ -51,17 +52,19 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 	 */
 	public ReporterPhotoViewDeleteSwing() {
 		
+		final ReporterServicesDelegate reporterDelegate = new ReporterServicesDelegate();
+		
 	
-		try {
-			Context context= new InitialContext();
-		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/Reporter!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.ReporterRemote");
-		remote =  (ReporterRemote) o;
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		List<Photo> photos= new ArrayList<Photo>();
-		photos=remote.viewPhoto();
+//		try {
+//			Context context= new InitialContext();
+//		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/Reporter!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.ReporterRemote");
+//		remote =  (ReporterRemote) o;
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		List<Photo> photos= new ArrayList<Photo>();
+//		photos=remote.viewPhoto();
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -71,17 +74,17 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Object[][] data = {};
-        data = new Object[photos.size()][3];
-        int i = 0;
-        for (Photo photo :  photos) {
-            data[i][0] = photo.getIdPhoto();
-            data[i][1] = photo.getDescription();
-            data[i][2] = photo.getImage();
-           
-         
-            i++;
-        }
+//		Object[][] data = {};
+//        data = new Object[photos.size()][3];
+//        int i = 0;
+//        for (Photo photo :  photos) {
+//            data[i][0] = photo.getIdPhoto();
+//            data[i][1] = photo.getDescription();
+//            data[i][2] = photo.getImage();
+//           
+//         
+//            i++;
+//        }
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(10, 11, 526, 285);
@@ -90,7 +93,9 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		table = new JTable();
 		scrollPane_1.setViewportView(table);
 		
-		table.setModel(new DefaultTableModel(data,new String[] {"ID", "Description","Photo"}));
+		reporterDelegate.ListPhoto(table);
+		
+		//table.setModel(new DefaultTableModel(data,new String[] {"ID", "Description","Photo"}));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 307, 526, 32);
@@ -110,10 +115,12 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		JButton btnDeletePhoto = new JButton("Delete Photo");
 		btnDeletePhoto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Photo photo = new Photo();
-				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
-				photo.setIdPhoto(var);
-				remote.deletePhoto(photo);
+				
+				reporterDelegate.DeletePhoto(table);
+//				Photo photo = new Photo();
+//				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+//				photo.setIdPhoto(var);
+//				remote.deletePhoto(photo);
 			}
 		});
 		btnDeletePhoto.setBounds(97, 0, 124, 23);
@@ -132,22 +139,25 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		JButton btnRefrech = new JButton("Refrech");
 		btnRefrech.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				List<Photo> photos= new ArrayList<Photo>();
-				photos=remote.viewPhoto();
 				
-				Object[][] data = {};
-		        data = new Object[photos.size()][3];
-		        int i = 0;
-		        for (Photo photo :  photos) {
-		            data[i][0] = photo.getIdPhoto();
-		            data[i][1] = photo.getDescription();
-		            data[i][2] = photo.getImage();
-		           
-		         
-		            i++;
-		        }
-		        table.setModel(new DefaultTableModel(data,new String[] {"ID", "Description","Photo"}));
-		        
+				reporterDelegate.ListPhoto(table);
+				
+//				List<Photo> photos= new ArrayList<Photo>();
+//				photos=remote.viewPhoto();
+//				
+//				Object[][] data = {};
+//		        data = new Object[photos.size()][3];
+//		        int i = 0;
+//		        for (Photo photo :  photos) {
+//		            data[i][0] = photo.getIdPhoto();
+//		            data[i][1] = photo.getDescription();
+//		            data[i][2] = photo.getImage();
+//		           
+//		         
+//		            i++;
+//		        }
+//		        table.setModel(new DefaultTableModel(data,new String[] {"ID", "Description","Photo"}));
+//		        
 		        
 			}
 		});
@@ -171,35 +181,37 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		JButton btnNewButton = new JButton("View Photo");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
-				List<Photo> photos= new ArrayList<Photo>();
-				photos=remote.viewPhoto();
-				Object[][] data = {};
-		        data = new Object[photos.size()][3];
-		        int i = 0;
-		        for (Photo photo :  photos) {
-		            data[i][0] = photo.getIdPhoto();
-		            data[i][1] = photo.getDescription();
-		            data[i][2] = photo.getImage();
-		            
-		            if (i + 1  == var ) {
-		            	JPanel panel_2 = new JPanel();
-		        		panel_2.setBounds(546, 11, 306, 283);
-		        		contentPane.add(panel_2);
-		        		panel_2.setLayout(null);
-		        		
-		        		JLabel lblNewLabel = new JLabel("");
-		        		lblNewLabel.setBounds(0, 0, 306, 283);
-		        		panel_2.add(lblNewLabel);
-		        		
-		        		ImageIcon icon = new ImageIcon(photo.getImage());
-		                lblNewLabel.setIcon(icon);
-		                panel_2.add(lblNewLabel);
-		            	
-		            	break; }
-		            i++;
-		        }
+				reporterDelegate.ViewPhoto(table, contentPane);
 				
+//				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+//				List<Photo> photos= new ArrayList<Photo>();
+//				photos=remote.viewPhoto();
+//				Object[][] data = {};
+//		        data = new Object[photos.size()][3];
+//		        int i = 0;
+//		        for (Photo photo :  photos) {
+//		            data[i][0] = photo.getIdPhoto();
+//		            data[i][1] = photo.getDescription();
+//		            data[i][2] = photo.getImage();
+//		            
+//		            if (i + 1  == var ) {
+//		            	JPanel panel_2 = new JPanel();
+//		        		panel_2.setBounds(546, 11, 306, 283);
+//		        		contentPane.add(panel_2);
+//		        		panel_2.setLayout(null);
+//		        		
+//		        		JLabel lblNewLabel = new JLabel("");
+//		        		lblNewLabel.setBounds(0, 0, 306, 283);
+//		        		panel_2.add(lblNewLabel);
+//		        		
+//		        		ImageIcon icon = new ImageIcon(photo.getImage());
+//		                lblNewLabel.setIcon(icon);
+//		                panel_2.add(lblNewLabel);
+//		            	
+//		            	break; }
+//		            i++;
+//		        }
+//				
 				
 				
 			}

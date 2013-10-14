@@ -23,6 +23,7 @@ import java.io.File;
 
 import javax.swing.JLabel;
 
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.ReporterServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Photo;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.ReporterRemote;
 
@@ -54,15 +55,17 @@ public class ReporterPhotoAdd extends JFrame {
 	 */
 	public ReporterPhotoAdd() {
 		
-		 
-		try {
-			Context context= new InitialContext();
-		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/Reporter!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.ReporterRemote");
-		remote =  (ReporterRemote) o;
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		final ReporterServicesDelegate reporterDelegate = new ReporterServicesDelegate();
+		
+//		 
+//		try {
+//			Context context= new InitialContext();
+//		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/Reporter!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.ReporterRemote");
+//		remote =  (ReporterRemote) o;
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
          
@@ -135,12 +138,14 @@ public class ReporterPhotoAdd extends JFrame {
 		JButton btnNewButton_1 = new JButton("Add");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				File file = new File(filepath);
-				 
-				Photo photo = new Photo();
-			     photo.setDescription(textArea.getText());
-				photo.setImage(remote.imageToByte(file));
-		         remote.addPhoto(photo);
+				
+				reporterDelegate.PhotoAdd(filepath, textArea);
+//				File file = new File(filepath);
+//				 
+//				Photo photo = new Photo();
+//			     photo.setDescription(textArea.getText());
+//				photo.setImage(remote.imageToByte(file));
+//		         remote.addPhoto(photo);
 		         new ReporterPhotoViewDeleteSwing().setVisible(true);
 		         setVisible(false);
 		         }

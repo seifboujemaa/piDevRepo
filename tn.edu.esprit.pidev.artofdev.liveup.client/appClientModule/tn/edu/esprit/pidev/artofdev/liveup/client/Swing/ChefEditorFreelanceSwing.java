@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.ChefEditorServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
@@ -51,35 +52,35 @@ public class ChefEditorFreelanceSwing extends JFrame {
 	 * Create the frame.
 	 */
 	public ChefEditorFreelanceSwing() {
-		
+		final ChefEditorServicesDelegate chefEditorDelegate = new ChefEditorServicesDelegate();
 		 	
-		try {
-			Context context= new InitialContext();
-		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/ChefEditor!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditorRemote");
-		remote = (ChefEditorRemote) o;
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		List<FreeLance> freelances= new ArrayList<FreeLance>();
-		freelances = remote.findAllFreelances();
-		
-		
-		Object[][] data = {};
-		 data = new Object[freelances.size()][7];
-	        int i = 0;
-	        for (FreeLance freelance :  freelances) {
-	            data[i][0] = freelance.getIdUser();
-	            data[i][1] = freelance.getLogin();
-	            data[i][2] = freelance.getPwd();
-	            data[i][3] = freelance.getFirstName();
-	            data[i][4] = freelance.getLastName();
-	            data[i][5] = freelance.getEmail();
-	            data[i][6] = freelance.isStatus();
-	         
-	            i++;
-	        }
-		
+//		try {
+//			Context context= new InitialContext();
+//		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/ChefEditor!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditorRemote");
+//		remote = (ChefEditorRemote) o;
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		List<FreeLance> freelances= new ArrayList<FreeLance>();
+//		freelances = remote.findAllFreelances();
+//		
+//		
+//		Object[][] data = {};
+//		 data = new Object[freelances.size()][7];
+//	        int i = 0;
+//	        for (FreeLance freelance :  freelances) {
+//	            data[i][0] = freelance.getIdUser();
+//	            data[i][1] = freelance.getLogin();
+//	            data[i][2] = freelance.getPwd();
+//	            data[i][3] = freelance.getFirstName();
+//	            data[i][4] = freelance.getLastName();
+//	            data[i][5] = freelance.getEmail();
+//	            data[i][6] = freelance.isStatus();
+//	         
+//	            i++;
+//	        }
+//		
 		
 		
 		
@@ -101,7 +102,8 @@ public class ChefEditorFreelanceSwing extends JFrame {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-		table.setModel(new DefaultTableModel(data,new String[] {"ID", "Login", "Password","First name ","Last namme","Email","Status"}));
+		chefEditorDelegate.ListFreeLance(table);
+		//table.setModel(new DefaultTableModel(data,new String[] {"ID", "Login", "Password","First name ","Last namme","Email","Status"}));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 336, 613, 24);
@@ -111,16 +113,18 @@ public class ChefEditorFreelanceSwing extends JFrame {
 		JButton btnAccept = new JButton("Accept");
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Integer var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
-				FreeLance freeLance = new FreeLance();
-				freeLance.setIdUser(var);
-				freeLance.setLogin(table.getValueAt(table.getSelectedRow(), 1).toString());
-				freeLance.setPwd(table.getValueAt(table.getSelectedRow(), 2).toString());
-				freeLance.setFirstName(table.getValueAt(table.getSelectedRow(), 3).toString());
-				freeLance.setLastName(table.getValueAt(table.getSelectedRow(), 4).toString());
-				freeLance.setEmail(table.getValueAt(table.getSelectedRow(), 5).toString());
-				freeLance.setStatus(true);
-				remote.acceptFreeLance(freeLance);
+				
+				chefEditorDelegate.AcceptFreeLance(table);
+//				Integer var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+//				FreeLance freeLance = new FreeLance();
+//				freeLance.setIdUser(var);
+//				freeLance.setLogin(table.getValueAt(table.getSelectedRow(), 1).toString());
+//				freeLance.setPwd(table.getValueAt(table.getSelectedRow(), 2).toString());
+//				freeLance.setFirstName(table.getValueAt(table.getSelectedRow(), 3).toString());
+//				freeLance.setLastName(table.getValueAt(table.getSelectedRow(), 4).toString());
+//				freeLance.setEmail(table.getValueAt(table.getSelectedRow(), 5).toString());
+//				freeLance.setStatus(true);
+//				remote.acceptFreeLance(freeLance);
 			}
 		});
 		btnAccept.setBounds(0, 0, 89, 23);
@@ -129,10 +133,11 @@ public class ChefEditorFreelanceSwing extends JFrame {
 		JButton btnDecline = new JButton("Decline");
 		btnDecline.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
-				FreeLance freeLance = new FreeLance();
-				freeLance.setIdUser(var);
-				remote.declineFreeLance(freeLance);
+				chefEditorDelegate.DeclineFreeLance(table);
+//				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+//				FreeLance freeLance = new FreeLance();
+//				freeLance.setIdUser(var);
+//				remote.declineFreeLance(freeLance);
 			}
 		});
 		btnDecline.setBounds(99, 0, 89, 23);
@@ -141,27 +146,29 @@ public class ChefEditorFreelanceSwing extends JFrame {
 		JButton btnRefrech = new JButton("Refrech");
 		btnRefrech.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				List<FreeLance> freelances= new ArrayList<FreeLance>();
-				freelances = remote.findAllFreelances();
+				chefEditorDelegate.ListFreeLance(table);
 				
-				
-				Object[][] data = {};
-				 data = new Object[freelances.size()][7];
-			        int i = 0;
-			        for (FreeLance freelance :  freelances) {
-			            data[i][0] = freelance.getIdUser();
-			            data[i][1] = freelance.getLogin();
-			            data[i][2] = freelance.getPwd();
-			            data[i][3] = freelance.getFirstName();
-			            data[i][4] = freelance.getLastName();
-			            data[i][5] = freelance.getEmail();
-			            data[i][6] = freelance.isStatus();
-			         
-			            i++;
-			        }
-				
-				
-				table.setModel(new DefaultTableModel(data,new String[] {"ID", "Login", "Password",  "First name","Last name","Email","Status"}));
+//				List<FreeLance> freelances= new ArrayList<FreeLance>();
+//				freelances = remote.findAllFreelances();
+//				
+//				
+//				Object[][] data = {};
+//				 data = new Object[freelances.size()][7];
+//			        int i = 0;
+//			        for (FreeLance freelance :  freelances) {
+//			            data[i][0] = freelance.getIdUser();
+//			            data[i][1] = freelance.getLogin();
+//			            data[i][2] = freelance.getPwd();
+//			            data[i][3] = freelance.getFirstName();
+//			            data[i][4] = freelance.getLastName();
+//			            data[i][5] = freelance.getEmail();
+//			            data[i][6] = freelance.isStatus();
+//			         
+//			            i++;
+//			        }
+//				
+//				
+//				table.setModel(new DefaultTableModel(data,new String[] {"ID", "Login", "Password",  "First name","Last name","Email","Status"}));
 			}
 		});
 		btnRefrech.setBounds(198, 0, 89, 23);
