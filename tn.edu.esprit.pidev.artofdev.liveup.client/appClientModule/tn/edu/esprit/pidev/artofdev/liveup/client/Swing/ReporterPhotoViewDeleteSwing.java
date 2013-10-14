@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -153,15 +154,15 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		btnRefrech.setBounds(232, 0, 89, 23);
 		panel_1.add(btnRefrech);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(546, 11, 306, 283);
-		contentPane.add(panel_2);
-		panel_2.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setBounds(0, 0, 306, 283);
-		panel_2.add(lblNewLabel);
-		
+//		JPanel panel_2 = new JPanel();
+//		panel_2.setBounds(546, 11, 306, 283);
+//		contentPane.add(panel_2);
+//		panel_2.setLayout(null);
+//		
+//		JLabel lblNewLabel = new JLabel("");
+//		lblNewLabel.setBounds(0, 0, 306, 283);
+//		panel_2.add(lblNewLabel);
+//		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBounds(542, 307, 310, 32);
 		contentPane.add(panel_3);
@@ -170,6 +171,37 @@ public class ReporterPhotoViewDeleteSwing extends JFrame {
 		JButton btnNewButton = new JButton("View Photo");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int var = (Integer) table.getValueAt(table.getSelectedRow(), 0);
+				List<Photo> photos= new ArrayList<Photo>();
+				photos=remote.viewPhoto();
+				Object[][] data = {};
+		        data = new Object[photos.size()][3];
+		        int i = 0;
+		        for (Photo photo :  photos) {
+		            data[i][0] = photo.getIdPhoto();
+		            data[i][1] = photo.getDescription();
+		            data[i][2] = photo.getImage();
+		            
+		            if (i + 1  == var ) {
+		            	JPanel panel_2 = new JPanel();
+		        		panel_2.setBounds(546, 11, 306, 283);
+		        		contentPane.add(panel_2);
+		        		panel_2.setLayout(null);
+		        		
+		        		JLabel lblNewLabel = new JLabel("");
+		        		lblNewLabel.setBounds(0, 0, 306, 283);
+		        		panel_2.add(lblNewLabel);
+		        		
+		        		ImageIcon icon = new ImageIcon(photo.getImage());
+		                lblNewLabel.setIcon(icon);
+		                panel_2.add(lblNewLabel);
+		            	
+		            	break; }
+		            i++;
+		        }
+				
+				
+				
 			}
 		});
 		btnNewButton.setBounds(10, 0, 290, 23);
