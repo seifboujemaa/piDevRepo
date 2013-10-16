@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 /**
@@ -24,6 +25,13 @@ public class ChefEditor implements ChefEditorRemote, ChefEditorLocal {
     }
 
 	@Override
+	
+	
+	public void createChefEditor(ChefEditor chefeditor) {
+		em.persist(chefeditor);
+
+	}
+	
 	public List<FreeLance> viewFreeLances() {
 		Query query=em.createQuery("select f from FreeLance f where f.status = false");
 		return query.getResultList();
@@ -139,6 +147,7 @@ public class ChefEditor implements ChefEditorRemote, ChefEditorLocal {
 		Query query=em.createQuery("select a from Article a");
 		return query.getResultList();
 	}
+
 
 
 

@@ -7,10 +7,11 @@ import javax.ejb.Local;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Photo;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Video;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditor;
 
 @Local
 public interface ReporterLocal {
-	
+	public void createReporter(Reporter reporter);
 	public List<Photo> viewPhoto();
 	public List<Video> viewVideo();
 	public byte[] imageToByte(File imageFile);

@@ -5,14 +5,30 @@ import java.util.List;
 import javax.ejb.Local;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Administrator;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditor;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance.Freelance;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.Reporter;
 
 @Local
 public interface AdministratorServicesLocal {
-	public void createAdministrator(Administrator administrator);
-	public void updateAdministrato(Administrator administrator);
-	public void deleteAdministrator(Administrator administrator);
-	public Administrator findAdministratorById(int idAdministrator);
-	public List<Administrator> findAllAdministrator();
-	public Administrator authentification(String login, String password);
-	public void disconnect();
+	public void createAgent(Agent agent);
+	public void updateAgent(Agent agent);
+	public void deleteAgent(Agent agent);
+	public Agent findAgentById(int idAgent);
+	public List<Agent> findAllAgent();
+	public void createJournalist(Journalist journalist);
+	public void updateJournalist(Journalist journalist);
+	public void deleteJournalist(Journalist journalist);
+	public Journalist findJournalistById(int idJournalist);
+	public List<Journalist> findAllJournalist();  
+	public void createFreelance(Freelance freelance);
+	public void updateFreelance(Freelance freelance);
+	public void deleteFreelance(Freelance freelance);
+	public FreeLance findFreelanceById(int idFreelance);
+	public List<Freelance> findAllFreelance(); 
+	public void createChefEditor(ChefEditor chefeditor);
+	public void createReporter(Reporter reporter);
 }

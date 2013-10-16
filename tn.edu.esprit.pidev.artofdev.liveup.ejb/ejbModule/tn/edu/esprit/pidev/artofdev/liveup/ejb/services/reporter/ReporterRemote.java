@@ -10,6 +10,7 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Video;
 
 @Remote
 public interface ReporterRemote {
+	public void createReporter(Reporter reporter);
 	public List<Photo> viewPhoto();
 	public List<Video> viewVideo();
 	public byte[] imageToByte(File imageFile);

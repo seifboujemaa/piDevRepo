@@ -13,6 +13,7 @@ import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Photo;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Video;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance.Freelance;
 
 /**
  * Session Bean implementation class Reporter
@@ -28,6 +29,11 @@ public class Reporter implements ReporterRemote, ReporterLocal {
     public Reporter() {
         // TODO Auto-generated constructor stub
     }
+    @Override
+    public void createReporter(Reporter reporter) {
+		em.persist(reporter);
+		
+	}
 
 	@Override
 	public List<Photo> viewPhoto() {
@@ -111,6 +117,9 @@ public class Reporter implements ReporterRemote, ReporterLocal {
 	   em.persist(photo);
 		
 	}
+
+	
+	
 
 	
 	

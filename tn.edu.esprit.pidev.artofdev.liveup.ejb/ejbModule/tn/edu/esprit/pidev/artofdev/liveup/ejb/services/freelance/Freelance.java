@@ -9,12 +9,14 @@ import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 /**
  * Session Bean implementation class Freelance
  */
 @Stateless
+
 public class Freelance implements FreelanceRemote, FreelanceLocal {
 @PersistenceContext
 EntityManager entityManager ;
@@ -24,7 +26,8 @@ EntityManager entityManager ;
     public Freelance() {
         // TODO Auto-generated constructor stub
     }
-
+    
+    
 	@Override
 	public List<Article> viewArticle() {
 	Query query=entityManager.createQuery("select a from Article a");
