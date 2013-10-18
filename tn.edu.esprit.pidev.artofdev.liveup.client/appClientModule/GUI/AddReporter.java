@@ -10,19 +10,20 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.AddJournalistServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.AddAgentServiceDelegate;
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.AddReporterServicesDelegate;
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.ReporterServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class AddJournalist extends JFrame {
+public class AddReporter extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField last;
 	private JTextField first;
+	private JTextField last;
 	private JTextField email;
 	private JTextField login;
 	private JTextField pwd;
@@ -31,10 +32,12 @@ public class AddJournalist extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddJournalist frame = new AddJournalist();
+					AddReporter frame = new AddReporter();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,8 +49,9 @@ public class AddJournalist extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddJournalist() {
-		final AddJournalistServicesDelegate journalistService = new AddJournalistServicesDelegate();
+	public AddReporter() {
+		final AddReporterServicesDelegate reporterService = new AddReporterServicesDelegate();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -55,65 +59,66 @@ public class AddJournalist extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblLastname = new JLabel("LastName");
-		lblLastname.setBounds(10, 42, 73, 14);
+		JLabel lblFristname = new JLabel("FristName:");
+		lblFristname.setBounds(40, 55, 63, 14);
+		contentPane.add(lblFristname);
+		
+		JLabel lblLastname = new JLabel("LastName:");
+		lblLastname.setBounds(40, 95, 63, 14);
 		contentPane.add(lblLastname);
 		
-		JLabel lblFirstname = new JLabel("FirstName");
-		lblFirstname.setBounds(10, 75, 57, 14);
-		contentPane.add(lblFirstname);
-		
-		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(10, 112, 46, 14);
+		JLabel lblEmail = new JLabel("Email:");
+		lblEmail.setBounds(40, 142, 46, 14);
 		contentPane.add(lblEmail);
 		
-		JLabel lblLogin = new JLabel("Login");
-		lblLogin.setBounds(10, 149, 46, 14);
+		JLabel lblLogin = new JLabel("Login:");
+		lblLogin.setBounds(40, 186, 46, 14);
 		contentPane.add(lblLogin);
 		
-		JLabel lblPwd = new JLabel("Pwd");
-		lblPwd.setBounds(10, 189, 46, 14);
+		JLabel lblPwd = new JLabel("Pwd:");
+		lblPwd.setBounds(40, 224, 46, 14);
 		contentPane.add(lblPwd);
 		
-		last = new JTextField();
-		last.setBounds(108, 39, 86, 20);
-		contentPane.add(last);
-		last.setColumns(10);
-		
 		first = new JTextField();
-		first.setBounds(108, 72, 86, 20);
+		first.setBounds(122, 52, 86, 20);
 		contentPane.add(first);
 		first.setColumns(10);
 		
+		last = new JTextField();
+		last.setBounds(122, 92, 86, 20);
+		contentPane.add(last);
+		last.setColumns(10);
+		
 		email = new JTextField();
-		email.setBounds(108, 109, 86, 20);
+		email.setBounds(122, 139, 86, 20);
 		contentPane.add(email);
 		email.setColumns(10);
 		
 		login = new JTextField();
-		login.setBounds(108, 146, 86, 20);
+		login.setBounds(122, 183, 86, 20);
 		contentPane.add(login);
 		login.setColumns(10);
 		
 		pwd = new JTextField();
-		pwd.setBounds(108, 186, 86, 20);
+		pwd.setBounds(122, 221, 86, 20);
 		contentPane.add(pwd);
 		pwd.setColumns(10);
 		
 		JButton btnAdd = new JButton("ADD");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Journalist journalist = new Journalist() ;
-				journalist.setFirstName(first.getText());
-				journalist.setLastName(last.getText());
-				journalist.setEmail(email.getText());
-				journalist.setLogin(login.getText());
-				journalist.setPwd(pwd.getText());
-				journalistService.create(journalist);
+				Reporter reporter = new Reporter() ;
+				reporter.setFirstName(first.getText());
+				reporter.setLastName(last.getText());
+				reporter.setEmail(email.getText());
+				reporter.setLogin(login.getText());
+				reporter.setPwd(pwd.getText());
+				reporterService.create(reporter);				
 			}
+				
+			
 		});
-		btnAdd.setBounds(298, 227, 89, 23);
+		btnAdd.setBounds(296, 238, 89, 23);
 		contentPane.add(btnAdd);
 	}
-
 }

@@ -4,14 +4,15 @@ import java.util.List;
 
 import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocater.ServiceLocator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.administrator.AdministratorServicesRemote;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.journalist.JournalistServicesRemote;
 
 public class JournalistServiceDelegate {
 
-	private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/JournalistServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.journalist.JournalistServicesRemote";
+	private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/AdministratorServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.administrator.AdministratorServicesRemote";
 
-	private static JournalistServicesRemote getProxy() {
-		return (JournalistServicesRemote) ServiceLocator.getInstance()
+	private static AdministratorServicesRemote getProxy() {
+		return (AdministratorServicesRemote) ServiceLocator.getInstance()
 				.getProxy(jndiName);
 	}
 

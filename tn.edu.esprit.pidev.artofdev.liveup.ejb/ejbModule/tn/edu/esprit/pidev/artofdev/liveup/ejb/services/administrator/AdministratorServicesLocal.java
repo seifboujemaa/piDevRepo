@@ -9,7 +9,6 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditor;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance.Freelance;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.Reporter;
 
 @Local
@@ -24,11 +23,5 @@ public interface AdministratorServicesLocal {
 	public void deleteJournalist(Journalist journalist);
 	public Journalist findJournalistById(int idJournalist);
 	public List<Journalist> findAllJournalist();  
-	public void createFreelance(Freelance freelance);
-	public void updateFreelance(Freelance freelance);
-	public void deleteFreelance(Freelance freelance);
-	public FreeLance findFreelanceById(int idFreelance);
-	public List<Freelance> findAllFreelance(); 
-	public void createChefEditor(ChefEditor chefeditor);
-	public void createReporter(Reporter reporter);
+	
 }
