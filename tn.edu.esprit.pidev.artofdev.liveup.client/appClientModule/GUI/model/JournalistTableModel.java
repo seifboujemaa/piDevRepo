@@ -19,7 +19,7 @@ public class JournalistTableModel extends AbstractTableModel {
 
 	public JournalistTableModel() {
 		data = JournalistServiceDelegate.findAllJournalist();
-		System.out.println("Got "+data.size()+" journalists");
+		//System.out.println("Got "+data.size()+" journalists");
 	}
 
 	@Override

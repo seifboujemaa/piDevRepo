@@ -16,6 +16,11 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
+import org.hornetq.api.core.client.loadbalance.FirstElementConnectionLoadBalancingPolicy;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class SelectJournalist extends JFrame {
 
 	/**
@@ -24,6 +29,7 @@ public class SelectJournalist extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTable journalistTable;
+	
 
 	/**
 	 * Launch the application.
@@ -59,19 +65,35 @@ public class SelectJournalist extends JFrame {
 		
 		journalistTable = new JTable();
 		scrollPane.setViewportView(journalistTable);
-		JournalistTableModel journalistTableModel = new JournalistTableModel();
+		final JournalistTableModel journalistTableModel = new JournalistTableModel();
 		journalistTable.setModel(journalistTableModel);
 		
-		JLabel lblSelectAJournalist = new JLabel("Select a Journalist you want to accept");
+		JLabel lblSelectAJournalist = new JLabel("Select a journalist :");
 		lblSelectAJournalist.setFont(new Font("Times New Roman", Font.ITALIC, 13));
 		lblSelectAJournalist.setBounds(24, 23, 229, 30);
 		contentPane.add(lblSelectAJournalist);
 		
-		JButton btnAccept = new JButton("Accept");
+		JButton btnAccept = new JButton("Exit");
+		btnAccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnAccept.setBounds(529, 363, 89, 23);
 		contentPane.add(btnAccept);
 		
-		JButton btnReject = new JButton("Reject");
+		JButton btnReject = new JButton("Edit");
+		btnReject.addActionListener(new ActionListener() {
+			
+			
+			public void actionPerformed(ActionEvent e) {
+			
+				EditJournalist EJ= new EditJournalist();
+				EJ.setVisible(true);
+				int selectedRow = journalistTable.getSelectedRow();
+				Journalist journalist = (Journalist) journalistTableModel.getValueAt(selectedRow, -1);
+				EJ.getFirstNameText().setText(journalist.getFirstName());
+			}
+		});
 		btnReject.setBounds(362, 363, 89, 23);
 		contentPane.add(btnReject);
 		//int selectedRow = journalistTable.getSelectedRow();
