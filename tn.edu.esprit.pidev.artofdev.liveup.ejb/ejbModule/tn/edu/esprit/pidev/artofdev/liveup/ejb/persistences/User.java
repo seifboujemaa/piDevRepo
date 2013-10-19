@@ -3,6 +3,8 @@ package tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 /**
  * Entity implementation class for Entity: User
  *
@@ -17,6 +19,8 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private Boolean status;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getIdUser() {
@@ -71,6 +75,31 @@ public class User implements Serializable {
 	
 	
 	
+	
+
+
+
+
+
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+
+
+
+
+
+
+
+
+
+
 	private static final long serialVersionUID = 1L;
 
 	

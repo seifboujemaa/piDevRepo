@@ -1,6 +1,6 @@
 package GUI;
 
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -9,15 +9,35 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
+
+import GUI.model.JournalistTableModel;
+
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.JournalistServiceDelegate;
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.SendMailServiceDelegate;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Mail;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EditJournalist extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField FirstNameText;
 	private JTextField LastNameText;
 	private JTextField LoginText;
 	private JTextField PasswordText;
 	private JTextField EmailText;
+	JRadioButton RadioActivate = new JRadioButton("Activate");
+	JRadioButton RadioDesactivate = new JRadioButton("Desactivate");
+	//int selectedRow = SelectJournalist.journalistTable.getSelectedRow();
+	//Journalist journalist = (Journalist) SelectJournalist.journalistTable.getValueAt(selectedRow, -1);
+
 
 	/**
 	 * Launch the application.
@@ -94,12 +114,59 @@ public class EditJournalist extends JFrame {
 		
 		
 		JButton btnApplyChanges = new JButton("Apply changes");
-		btnApplyChanges.setBounds(287, 345, 120, 23);
+		btnApplyChanges.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Boolean status;
+				int selectedRow = SelectJournalist.journalistTable.getSelectedRow();
+				Journalist journalist = (Journalist) SelectJournalist.journalistTable.getValueAt(selectedRow, -1);
+				
+				String firstname = FirstNameText.getText();
+				String lastname = LastNameText.getText();
+				String login = LoginText.getText();
+				String password = PasswordText.getText();
+				String email = EmailText.getText();
+				if(RadioActivate.isSelected())
+					 status=true;
+				else
+					status=false;
+				
+				
+					journalist.setFirstName(firstname);
+					journalist.setLastName(lastname);
+					journalist.setLogin(login);
+					journalist.setPwd(password);
+					journalist.setEmail(email);
+					journalist.setStatus(status);
+					
+				
+				JournalistServiceDelegate.update(journalist);
+				
+				setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				
+				Mail mail = new Mail();
+				mail.setUsernameTo(EmailText.getText());
+				SendMailServiceDelegate.doSendMail(mail);
+			}
+		});
+		btnApplyChanges.setBounds(312, 345, 120, 23);
 		contentPane.add(btnApplyChanges);
 		
 		JButton btnExit = new JButton("EXIT");
-		btnExit.setBounds(442, 345, 89, 23);
+		btnExit.setBounds(457, 345, 89, 23);
 		contentPane.add(btnExit);
+		
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setBounds(46, 292, 46, 14);
+		contentPane.add(lblStatus);
+		
+		
+		RadioActivate.setBounds(155, 288, 109, 23);
+		contentPane.add(RadioActivate);
+		
+		
+		
+		RadioDesactivate.setBounds(155, 324, 109, 23);
+		contentPane.add(RadioDesactivate);
 	}
 
 	public JTextField getFirstNameText() {
@@ -141,5 +208,5 @@ public class EditJournalist extends JFrame {
 	public void setEmailText(JTextField emailText) {
 		EmailText = emailText;
 	}
-
+	
 }

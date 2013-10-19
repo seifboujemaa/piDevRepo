@@ -1,4 +1,4 @@
-Apackage tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance;
+package tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance;
 
 import java.util.List;
 
