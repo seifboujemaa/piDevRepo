@@ -9,7 +9,7 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.news.NewsServicesRemote;
 
 public class NewsServicesDelegate {
-private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/NewsServices!"+NewsServicesRemote.class.getCanonicalName();
+private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/NewsServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.news.NewsServicesRemote";
 	
 	private static NewsServicesRemote getProxy(){
 		return (NewsServicesRemote)ServiceLocator

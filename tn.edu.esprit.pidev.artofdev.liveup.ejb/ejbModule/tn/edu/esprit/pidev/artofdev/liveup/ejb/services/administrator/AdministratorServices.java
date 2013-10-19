@@ -138,6 +138,13 @@ public class AdministratorServices implements AdministratorServicesRemote, Admin
 		entityManager.persist(chefeditor);
 	}
 
+	@Override
+	public void createReporter(
+			tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 	
