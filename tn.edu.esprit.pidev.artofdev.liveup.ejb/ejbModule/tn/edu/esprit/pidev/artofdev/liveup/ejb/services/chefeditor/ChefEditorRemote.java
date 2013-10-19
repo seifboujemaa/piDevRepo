@@ -6,11 +6,12 @@ import javax.ejb.Remote;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 @Remote
 public interface ChefEditorRemote {
-	
+	public void createChefEditor(ChefEditor chefeditor);
 	public List<FreeLance> viewFreeLances();
 	public List<FreeLance> viewRequest();
 	public void acceptFreeLance(FreeLance freeLance);
@@ -26,5 +27,9 @@ public interface ChefEditorRemote {
 	public List<News> viewNewsUntreated();
 	public List<Article> viewArticlesUntreated();
 	public void disconnect();
+	public List<FreeLance> findAllFreelances();
+	public List<News> findAllNews();
+	public List<Article> findAllArticles();
+
 
 }

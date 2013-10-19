@@ -1,5 +1,9 @@
 package tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,6 +13,7 @@ import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Photo;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Video;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance.Freelance;
 
 /**
  * Session Bean implementation class Reporter
@@ -24,11 +29,17 @@ public class Reporter implements ReporterRemote, ReporterLocal {
     public Reporter() {
         // TODO Auto-generated constructor stub
     }
+    @Override
+    public void createReporter(Reporter reporter) {
+		em.persist(reporter);
+		
+	}
 
 	@Override
 	public List<Photo> viewPhoto() {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = em.createQuery("select p from Photo p");
+		return query.getResultList();
+		
 	}
 
 	@Override
@@ -37,11 +48,7 @@ public class Reporter implements ReporterRemote, ReporterLocal {
 		return null;
 	}
 
-	@Override
-	public void addPhoto(Photo photo) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void addVideo(Video video) {
@@ -80,5 +87,41 @@ public class Reporter implements ReporterRemote, ReporterLocal {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public byte[] imageToByte(File imageFile) {
+		byte[] imagebytes = null;
+
+		try {
+
+		FileInputStream fis = new FileInputStream(imageFile);
+
+		imagebytes = new byte[(int) imageFile.length()];
+
+		fis.read(imagebytes);
+
+		} catch (FileNotFoundException ex) {
+
+		ex.printStackTrace();
+
+		} catch (IOException ex) {
+
+		ex.printStackTrace();
+
+		}
+		return imagebytes;
+	}
+
+	@Override
+	public void addPhoto(Photo photo) {
+	   em.persist(photo);
+		
+	}
+
+	
+	
+
+	
+	
 
 }

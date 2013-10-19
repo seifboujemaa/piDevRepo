@@ -51,4 +51,10 @@ entityManager.merge(team);
 		return query.getResultList();
 	}
 
+	@Override
+	public Team findTeamByName(String nameTeam) {
+		Query query=entityManager.createQuery("select t from Team t where name = '"+nameTeam+"' ");
+		return (Team) query.getSingleResult();
+	}
+
 }

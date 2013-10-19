@@ -10,6 +10,7 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 @Local
 public interface ChefEditorLocal {
+	public void createChefEditor(ChefEditor chefeditor);
 	public List<FreeLance> viewFreeLances();
 	public List<FreeLance> viewRequest();
 	public void acceptFreeLance(FreeLance freeLance);
@@ -25,5 +26,8 @@ public interface ChefEditorLocal {
 	public List<News> viewNewsUntreated();
 	public List<Article> viewArticlesUntreated();
 	public void disconnect();
+	public List<FreeLance> findAllFreelances();
+	public List<News> findAllNews();
+	public List<Article> findAllArticles();
 
 }
