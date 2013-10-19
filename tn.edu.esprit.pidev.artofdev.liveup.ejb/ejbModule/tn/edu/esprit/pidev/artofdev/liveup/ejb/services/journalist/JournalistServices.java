@@ -52,7 +52,7 @@ public class JournalistServices implements JournalistServicesLocal,
 	public List<Journalist> findAllJournalist() {
 		Query query = entityManager.createQuery("from Journalist e");
 		List<Journalist> journalists = query.getResultList();
-		System.out.println("EntityManager returned "+journalists.size()+" journalists");
+		//System.out.println("EntityManager returned "+journalists.size()+" journalists");
 		return journalists;
 	}
 

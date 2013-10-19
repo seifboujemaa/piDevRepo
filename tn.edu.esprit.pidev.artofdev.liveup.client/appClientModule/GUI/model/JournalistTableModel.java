@@ -14,7 +14,7 @@ public class JournalistTableModel extends AbstractTableModel {
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	private String[] columns = { "First name", "Last name", "Login", "Email" };
+	private String[] columns = { "First name", "Last name", "Login","Password", "Email","Status" };
 	private List<Journalist> data = new ArrayList<Journalist>();
 
 	public JournalistTableModel() {
@@ -43,7 +43,11 @@ public class JournalistTableModel extends AbstractTableModel {
 		case 2:
 			return journalist.getLogin();
 		case 3:
+			return journalist.getPwd();
+		case 4:
 			return journalist.getEmail();
+		case 5:
+			return journalist.getStatus();
 		default:
 			return journalist;
 		}

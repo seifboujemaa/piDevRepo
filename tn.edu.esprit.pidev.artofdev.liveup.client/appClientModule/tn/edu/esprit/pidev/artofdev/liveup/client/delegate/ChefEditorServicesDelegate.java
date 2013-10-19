@@ -87,7 +87,7 @@ public class ChefEditorServicesDelegate {
 	            data[i][3] = freelance.getFirstName();
 	            data[i][4] = freelance.getLastName();
 	            data[i][5] = freelance.getEmail();
-	            data[i][6] = freelance.isStatus();
+	            data[i][6] = freelance.getStatus();
 	         
 	            i++;
 	        }

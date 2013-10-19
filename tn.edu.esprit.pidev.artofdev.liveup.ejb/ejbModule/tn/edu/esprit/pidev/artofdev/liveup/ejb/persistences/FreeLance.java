@@ -16,7 +16,7 @@ import javax.persistence.*;
 public class FreeLance extends User implements Serializable {
 
 	
-	private boolean status;
+	
 	
 	private List<Article> articles= new ArrayList<Article>();
 	private List<News> news = new ArrayList<News>();
@@ -27,13 +27,9 @@ public class FreeLance extends User implements Serializable {
 	public FreeLance() {
 		super();
 	}   
-   public boolean isStatus() {
-	return status;
-}
    
-   public void setStatus(boolean status) {
-	this.status = status;
-}
+   
+  
 	@OneToMany(mappedBy="freeLance")
 	public List<Article> getArticles() {
 		return articles;
