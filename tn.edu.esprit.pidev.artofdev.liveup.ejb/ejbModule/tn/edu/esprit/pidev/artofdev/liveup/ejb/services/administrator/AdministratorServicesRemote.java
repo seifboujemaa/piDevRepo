@@ -6,10 +6,11 @@ import javax.ejb.Remote;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Administrator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.ChefEditor;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditor;
+
 
 @Remote
 public interface AdministratorServicesRemote {

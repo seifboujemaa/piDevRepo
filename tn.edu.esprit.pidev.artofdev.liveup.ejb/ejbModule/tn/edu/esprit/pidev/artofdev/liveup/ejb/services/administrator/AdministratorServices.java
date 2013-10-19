@@ -10,11 +10,12 @@ import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Administrator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.ChefEditor;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditor;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance.Freelance;
+
+
 
 /**
  * Session Bean implementation class AdministratorServices
@@ -121,16 +122,20 @@ public class AdministratorServices implements AdministratorServicesRemote, Admin
 		return null;
 	}
 
-	@Override
-	public void createChefEditor(ChefEditor chefeditor) {
-		// TODO Auto-generated method stub
-		
-	}
 
+	
 	@Override
 	public void createReporter(Reporter reporter) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	
+
+	@Override
+	public void createChefEditor(ChefEditor chefeditor) {
+		
+		entityManager.persist(chefeditor);
 	}
 
 	
