@@ -109,7 +109,7 @@ public class AddArticle extends JFrame {
 				article.setParagraph(parag.getText());
 				article.setDay(day.getText());
 				article.setType(type.getText());
-				article.setStatus(status.getText());
+				article.setStatus(false);
 				articleService.create(article);
 			}
 		});

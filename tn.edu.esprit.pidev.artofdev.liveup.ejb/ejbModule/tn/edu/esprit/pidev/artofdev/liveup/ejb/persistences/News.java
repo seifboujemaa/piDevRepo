@@ -18,7 +18,7 @@ public class News implements Serializable {
 	private String paragraph;
 	private String day;
 	private String type;
-	private String status;
+	private boolean status;
 	
 	private FreeLance freeLance;
 	private Journalist journalist;
@@ -80,11 +80,11 @@ public class News implements Serializable {
 		this.journalist = journalist;
 	}
 	
-	public String isStatus() {
+	public boolean isStatus() {
 		return status;
 	}
 	
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 	

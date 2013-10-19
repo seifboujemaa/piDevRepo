@@ -108,7 +108,7 @@ public class AddNews extends JFrame {
 				news.setParagraph(parag.getText());
 				news.setDay(day.getText());
 				news.setType(type.getText());
-				news.setStatus(status.getText());
+				news.setStatus(false);
 				newsService.create(news);
 			}
 		});
