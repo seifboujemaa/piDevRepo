@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
-import org.hornetq.api.core.client.loadbalance.FirstElementConnectionLoadBalancingPolicy;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -28,7 +27,7 @@ public class SelectJournalist extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTable journalistTable;
+	protected static JTable journalistTable;
 	
 
 	/**
@@ -85,13 +84,25 @@ public class SelectJournalist extends JFrame {
 		btnReject.addActionListener(new ActionListener() {
 			
 			
+			
 			public void actionPerformed(ActionEvent e) {
 			
 				EditJournalist EJ= new EditJournalist();
 				EJ.setVisible(true);
 				int selectedRow = journalistTable.getSelectedRow();
 				Journalist journalist = (Journalist) journalistTableModel.getValueAt(selectedRow, -1);
+				
 				EJ.getFirstNameText().setText(journalist.getFirstName());
+				EJ.getLastNameText().setText(journalist.getLastName());
+				EJ.getLoginText().setText(journalist.getLogin());
+				EJ.getPasswordText().setText(journalist.getPwd());
+				EJ.getEmailText().setText(journalist.getEmail());
+				if(journalist.getStatus()==true)
+				EJ.RadioActivate.doClick();
+				else
+					EJ.RadioDesactivate.doClick();
+				
+				
 			}
 		});
 		btnReject.setBounds(362, 363, 89, 23);
