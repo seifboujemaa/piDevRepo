@@ -10,11 +10,12 @@ import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Administrator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.ChefEditor;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditor;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.freelance.Freelance;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.Reporter;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
+
+
 
 /**
  * Session Bean implementation class AdministratorServices
@@ -92,19 +93,19 @@ public class AdministratorServices implements AdministratorServicesRemote, Admin
 	}
 
 	@Override
-	public void createFreelance(Freelance freelance) {
+	public void createFreelance(FreeLance freelance) {
+		entityManager.persist(freelance);
+
+	}
+
+	@Override
+	public void updateFreelance(FreeLance freelance) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateFreelance(Freelance freelance) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteFreelance(Freelance freelance) {
+	public void deleteFreelance(FreeLance freelance) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -116,22 +117,39 @@ public class AdministratorServices implements AdministratorServicesRemote, Admin
 	}
 
 	@Override
-	public List<Freelance> findAllFreelance() {
+	public List<FreeLance> findAllFreelance() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public void createChefEditor(ChefEditor chefeditor) {
-		// TODO Auto-generated method stub
-		
-	}
 
+	
 	@Override
 	public void createReporter(Reporter reporter) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
+
+	@Override
+	public void createChefEditor(ChefEditor chefeditor) {
+		
+		entityManager.persist(chefeditor);
+	}
+
+	@Override
+	public void createReporter(
+			tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+	
+
+	
 
   
 }

@@ -105,7 +105,7 @@ EntityManager entityManager ;
 	}
 
 	@Override
-	public void updateFreelance(Freelance freelance) {
+	public void updateFreelance(FreeLance freelance) {
 		entityManager.merge(freelance);
 		
 	}
@@ -123,9 +123,11 @@ EntityManager entityManager ;
 	}
 
 	@Override
-	public List<Freelance> findAllFreelance() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<FreeLance> findAllFreelance() {
+		Query query = entityManager.createQuery("from FreeLance f");
+		List<FreeLance> freelances = query.getResultList();
+		
+		return freelances;
 	}
 
 }

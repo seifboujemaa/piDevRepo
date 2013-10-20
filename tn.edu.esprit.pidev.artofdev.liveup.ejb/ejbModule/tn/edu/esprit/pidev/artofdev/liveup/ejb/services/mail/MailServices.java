@@ -30,8 +30,8 @@ public class MailServices implements MailServicesRemote {
 
 	@Override
 	public void sendMail(Mail mail) {
-		final String username = "wedsitepidev@gmail.com";
-		final String password = "23967826";
+		final String username = "akrem.sgh@gmail.com";
+		final String password = "subzero3310";
 		
 		
 
@@ -51,11 +51,11 @@ public class MailServices implements MailServicesRemote {
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("wedsitepidev@gmail.com"));
+			message.setFrom(new InternetAddress("akrem.sgh@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse(mail.getUsernameTo()));
 			message.setSubject("inscription");
-			message.setText("c bon");
+			message.setText("Olfaaaaaaaaaaaaaaaaaaaaaaa");
 
 			Transport.send(message);
 

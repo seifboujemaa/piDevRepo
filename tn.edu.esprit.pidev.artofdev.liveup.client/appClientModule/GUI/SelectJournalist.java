@@ -75,6 +75,8 @@ public class SelectJournalist extends JFrame {
 		JButton btnAccept = new JButton("Exit");
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				System.exit(0);
 			}
 		});
 		btnAccept.setBounds(529, 363, 89, 23);

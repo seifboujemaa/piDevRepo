@@ -8,7 +8,7 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.journalist.JournalistSer
 
 
 
-public class AddAdministratorServicesDelegate {
+public class AddJournalistServicesDelegate {
 private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/JournalistServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.journalist.JournalistServicesRemote";
 
 	
@@ -19,28 +19,6 @@ private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup
 	}
 	
 	
-/*	public  void create(Agent agent) {
-		getProxy().createAgent(agent);
-		
-	}
-	
-	public static void update(Agent agent) {
-		getProxy().updateAgent(agent);
-		
-	}
-	public static void delete(Agent agent) {
-		getProxy().deleteAgent(agent);
-		
-	}
-	public static List<Agent> findAllAgent() {
-		return getProxy().findAllAgent();
-		
-	}
-	public static Agent findAgentById(int idAgent) {
-		return getProxy().findAgentById(idAgent);
-		
-	}
-	*/
 
 	public  void create(Journalist journalist) {
 		getProxy().createJournalist(journalist);
