@@ -28,7 +28,8 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 	@Override
 	public User authentification(String login, String password) {
 		User user =null;
-		Query query=entityManager.createQuery("Select u from User u where u.login=:l and u.pwd=:p ");
+		Query query=entityManager.createQuery("Select u from User u where u.login=:l and u.pwd=:p and u.status=true ");
+		
 		query.setParameter("l", login).setParameter("p", password);
 		try{
 			user=(User) query.getSingleResult();

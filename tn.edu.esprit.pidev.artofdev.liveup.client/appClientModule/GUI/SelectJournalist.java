@@ -118,16 +118,21 @@ public class SelectJournalist extends JFrame {
 				int selectedRow = journalistTable.getSelectedRow();
 				Journalist journalist = (Journalist) journalistTableModel.getValueAt(selectedRow, -1);
 				
+				int userChoice =  JOptionPane.showConfirmDialog(rootPane, "Do you want to delete "+journalist.getFirstName()+"   "+journalist.getLastName()+"?", "User delete", JOptionPane.YES_NO_OPTION);
+				if(userChoice==JOptionPane.NO_OPTION) return;
+				else if(userChoice==JOptionPane.YES_OPTION){
+					JournalistServiceDelegate.delete(journalist);
+					journalistTable.setModel(new JournalistTableModel());
+					JOptionPane.showMessageDialog(rootPane, "The user has been removed");
 				
+				}
+				//JOptionPane.showMessageDialog(null, "  "+journalist.getFirstName()+" "+journalist.getLastName()+"has been removed");
 				
-				JournalistServiceDelegate.delete(journalist);
-				JOptionPane.showMessageDialog(null, "  "+journalist.getFirstName()+" "+journalist.getLastName()+"has been removed");
-				
-			}
+				}
 		});
+		
 		btnRemove.setBounds(465, 346, 89, 23);
 		contentPane.add(btnRemove);
-		//int selectedRow = journalistTable.getSelectedRow();
-		//Journalist journalist = (Journalist) journalistTableModel.getValueAt(selectedRow, -1);
+	
 	}
 }
