@@ -117,10 +117,11 @@ public class SelectJournalist extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int selectedRow = journalistTable.getSelectedRow();
 				Journalist journalist = (Journalist) journalistTableModel.getValueAt(selectedRow, -1);
-				JOptionPane.showMessageDialog(null, "you're going to remove"+journalist.getFirstName()+" "+journalist.getLastName());
+				
 				
 				
 				JournalistServiceDelegate.delete(journalist);
+				JOptionPane.showMessageDialog(null, "  "+journalist.getFirstName()+" "+journalist.getLastName()+"has been removed");
 				
 			}
 		});
