@@ -3,6 +3,7 @@ package GUI;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.UIManager;
@@ -11,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import GUI.model.JournalistTableModel;
 import javax.swing.JScrollPane;
 
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.JournalistServiceDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -79,7 +81,7 @@ public class SelectJournalist extends JFrame {
 				System.exit(0);
 			}
 		});
-		btnAccept.setBounds(529, 363, 89, 23);
+		btnAccept.setBounds(573, 394, 89, 23);
 		contentPane.add(btnAccept);
 		
 		JButton btnReject = new JButton("Edit");
@@ -107,8 +109,23 @@ public class SelectJournalist extends JFrame {
 				
 			}
 		});
-		btnReject.setBounds(362, 363, 89, 23);
+		btnReject.setBounds(365, 346, 89, 23);
 		contentPane.add(btnReject);
+		
+		JButton btnRemove = new JButton("Remove");
+		btnRemove.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = journalistTable.getSelectedRow();
+				Journalist journalist = (Journalist) journalistTableModel.getValueAt(selectedRow, -1);
+				JOptionPane.showMessageDialog(null, "you're going to remove"+journalist.getFirstName()+" "+journalist.getLastName());
+				
+				
+				JournalistServiceDelegate.delete(journalist);
+				
+			}
+		});
+		btnRemove.setBounds(465, 346, 89, 23);
+		contentPane.add(btnRemove);
 		//int selectedRow = journalistTable.getSelectedRow();
 		//Journalist journalist = (Journalist) journalistTableModel.getValueAt(selectedRow, -1);
 	}

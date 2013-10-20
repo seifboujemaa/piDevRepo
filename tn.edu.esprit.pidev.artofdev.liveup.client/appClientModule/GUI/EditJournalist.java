@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.ButtonGroup;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -152,6 +153,12 @@ public class EditJournalist extends JFrame {
 		contentPane.add(btnApplyChanges);
 		
 		JButton btnExit = new JButton("EXIT");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				System.exit(0);
+			}
+		});
 		btnExit.setBounds(457, 345, 89, 23);
 		contentPane.add(btnExit);
 		
@@ -159,14 +166,19 @@ public class EditJournalist extends JFrame {
 		lblStatus.setBounds(46, 292, 46, 14);
 		contentPane.add(lblStatus);
 		
+		ButtonGroup group = new ButtonGroup();
+		
 		
 		RadioActivate.setBounds(155, 288, 109, 23);
 		contentPane.add(RadioActivate);
+		group.add(RadioActivate);
+		
 		
 		
 		
 		RadioDesactivate.setBounds(155, 324, 109, 23);
 		contentPane.add(RadioDesactivate);
+		group.add(RadioDesactivate);
 	}
 
 	public JTextField getFirstNameText() {
