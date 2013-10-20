@@ -1,5 +1,7 @@
 package tn.edu.esprit.pidev.artofdev.liveup.client.delegate;
 
+import java.util.List;
+
 import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocater.ServiceLocator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Player;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Stadium;
@@ -27,12 +29,16 @@ private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup
 		getProxy().deleteStadium(stadium);
 		
 	}
-	public static void findAllStadium() {
-		getProxy().findAllStadium();
+	public static List<Stadium> findAllStadium() {
+		return getProxy().findAllStadium();
 		
 	}
 	public static void findStadiumById(int idStadium) {
 		getProxy().findStadiumById(idStadium);
+		
+	}
+	public static Stadium findStadiumByName(String nameStadium) {
+		return getProxy().findStadiumByName(nameStadium);
 		
 	}
 

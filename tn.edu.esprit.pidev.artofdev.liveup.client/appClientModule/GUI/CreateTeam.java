@@ -27,6 +27,7 @@ public class CreateTeam extends JFrame {
 	private JTextField textField_6;
 	
 	List<Player> players = new ArrayList<Player>();
+	private JTextField stageField;
 
 
 	public JTextField getTextField() {
@@ -80,7 +81,11 @@ public class CreateTeam extends JFrame {
 				Team team = new Team();
 				team.setName(textField.getText());
 				team.affectTeamToPlayers(players);
+				team.setStage(stageField.getText());
+				//team.setPlayers(players);
 				teamService.create(team);
+				
+				players.clear();
 		}
 		});
 		btnNewButton.setBounds(119, 127, 89, 23);
@@ -115,5 +120,14 @@ public class CreateTeam extends JFrame {
 		});
 		btnNewButton_1.setBounds(299, 66, 89, 23);
 		contentPane.add(btnNewButton_1);
+		
+		stageField = new JTextField();
+		stageField.setBounds(372, 11, 86, 20);
+		contentPane.add(stageField);
+		stageField.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Group");
+		lblNewLabel_1.setBounds(299, 14, 63, 14);
+		contentPane.add(lblNewLabel_1);
 	}
 }

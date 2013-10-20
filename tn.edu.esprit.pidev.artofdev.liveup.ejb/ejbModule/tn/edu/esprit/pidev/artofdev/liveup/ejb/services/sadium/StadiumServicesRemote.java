@@ -12,6 +12,7 @@ public interface StadiumServicesRemote {
 	public void updateStadium(Stadium stadium);
 	public void deleteStadium(Stadium stadium);
 	public Stadium findStadiumById(int idStadium);
+	public Stadium findStadiumByName(String nameStadium);
 	public List<Stadium> findAllStadium();
 
 

@@ -2,6 +2,8 @@ package tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences;
 
 import java.io.Serializable;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -19,7 +21,7 @@ public class Stadium implements Serializable {
 	private String address;
 	
 	private Agent agent;
-	private Game game;
+	private List<Game> games;
 	private static final long serialVersionUID = 1L;
 
 	public Stadium() {
@@ -63,12 +65,19 @@ public class Stadium implements Serializable {
 	public void setAgent(Agent agent) {
 		this.agent = agent;
 	}
-	@OneToOne
-	public Game getGame() {
-		return game;
+	@OneToMany(mappedBy="stadium")
+	public List<Game> getGames() {
+		return games;
 	}
 	
-	public void setGame(Game game) {
-		this.game = game;
+	public void setGames(List<Game> games) {
+		this.games = games;
 	}
+	
+	 public void affectStadiumToGames(List<Game> games){
+			for(Game game:games){
+				game.setStadium(this);
+				this.getGames().add(game);
+			}
+		}
 }

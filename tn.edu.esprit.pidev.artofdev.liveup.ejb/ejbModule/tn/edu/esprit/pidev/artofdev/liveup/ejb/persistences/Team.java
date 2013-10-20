@@ -22,12 +22,21 @@ public class Team implements Serializable {
 	private int draws;
 	private int defeats;
 	private int qualification;
+	private String stage ;
 	
 	private List<Player> players = new ArrayList<Player>();
 	
 	private Agent agent;
-	private Game game;
+	private List<Game> game;
 	private static final long serialVersionUID = 1L;
+
+	public String getStage() {
+		return stage;
+	}
+
+	public void setStage(String stage) {
+		this.stage = stage;
+	}
 
 	public Team() {
 		super();
@@ -71,6 +80,8 @@ public class Team implements Serializable {
 	public void setDefeats(int defeats) {
 		this.defeats = defeats;
 	}   
+	
+
 	public int getQualification() {
 		return this.qualification;
 	}
@@ -85,14 +96,18 @@ public class Team implements Serializable {
    public void setAgent(Agent agent) {
 	this.agent = agent;
 }
- @ManyToOne  
-   public Game getGame() {
+ @ManyToMany(mappedBy="teams")
+   public List<Game> getGame() {
 	return game;
 }
-   public void setGame(Game game) {
+   public void setGame(List<Game> game) {
 	this.game = game;
 }
-   @OneToMany(mappedBy="team",cascade=CascadeType.PERSIST,fetch=FetchType.EAGER)
+   
+   
+  
+	   
+   @OneToMany(mappedBy="team")
    public List<Player> getPlayers() {
 	return players;
 }

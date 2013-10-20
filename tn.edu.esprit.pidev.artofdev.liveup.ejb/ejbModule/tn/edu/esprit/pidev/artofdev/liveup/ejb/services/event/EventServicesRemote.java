@@ -12,7 +12,7 @@ public interface EventServicesRemote {
 	public void createEvent(Event event);
 	public void updateEventEvent(Event event);
 	public void deleteEvent(Event event);
-	public Event findStadiumById(int idEvent);
+	public Event findEventById(int idEvent);
 	public List<Event> findAllEvent();
 
 
