@@ -108,8 +108,5 @@ public class ReporterServicesDelegate {
 		
 	}
 	
-	public static List<Reporter> findAllReproter() {
-		return getProxy().findAllReporter();
-	
-	}
+
 }
