@@ -61,6 +61,7 @@ public class AddGame extends JFrame {
 		
 		teams = new ArrayList<Team>();
 		teams=teamService.findAllTeam();
+		stadiums=stadiumService.findAllStadium();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 509, 462);
@@ -123,7 +124,14 @@ public class AddGame extends JFrame {
 		final JComboBox typeCombo = new JComboBox();
 		typeCombo.setBounds(107, 337, 87, 20);
 		contentPane.add(typeCombo);
-		typeCombo.addItem("Group Stage");
+		typeCombo.addItem("Group A");
+		typeCombo.addItem("Group B");
+		typeCombo.addItem("Group C");
+		typeCombo.addItem("Group D");
+		typeCombo.addItem("Group E");
+		typeCombo.addItem("Group F");
+		typeCombo.addItem("Group G");
+		typeCombo.addItem("Group H");
 		typeCombo.addItem("Final Quarter");
 		typeCombo.addItem("3rd Place");
 		typeCombo.addItem("Semi Final");
@@ -134,23 +142,6 @@ public class AddGame extends JFrame {
 		JLabel lblType = new JLabel("Type");
 		lblType.setBounds(32, 340, 46, 14);
 		contentPane.add(lblType);
-		
-		final JComboBox groupCombo = new JComboBox();
-		groupCombo.setBounds(107, 379, 87, 20);
-		contentPane.add(groupCombo);
-		groupCombo.addItem("A");
-		groupCombo.addItem("B");
-		groupCombo.addItem("C");
-		groupCombo.addItem("D");
-		groupCombo.addItem("E");
-		groupCombo.addItem("F");
-		groupCombo.addItem("G");
-		groupCombo.addItem("H");
-		
-		
-		JLabel lblGroup = new JLabel("Group");
-		lblGroup.setBounds(32, 382, 46, 14);
-		contentPane.add(lblGroup);
 		
 		team1Score = new JTextField();
 		team1Score.setBounds(329, 25, 32, 20);
@@ -170,6 +161,14 @@ public class AddGame extends JFrame {
 		lblNewLabel_6.setBounds(245, 90, 69, 14);
 		contentPane.add(lblNewLabel_6);
 		
+		final JComboBox stadiumCombo = new JComboBox();
+		stadiumCombo.setBounds(107, 250, 87, 20);
+		contentPane.add(stadiumCombo);
+		for(Stadium stadium : stadiums)
+		{
+			stadiumCombo.addItem(stadium.getName());
+		}
+		
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -184,24 +183,42 @@ public class AddGame extends JFrame {
 				int team2Goal=Integer.parseInt(team2Score.getText());
 				Date date = dateChooser.getDate();
 				String refree = refreeField.getText();
-				String group = (String)groupCombo.getSelectedItem();
+				String group = (String)typeCombo.getSelectedItem();
 				String type = (String)typeCombo.getSelectedItem();
 				String time = timeField.getText();
-				//Stadium stadium = new Stadium();
+				Stadium stadium = new Stadium();
+				stadium =stadiumService.findStadiumByName((String)stadiumCombo.getSelectedItem());
 				
+				List<Game> games = new ArrayList<Game>();
+				List<Team> teams1 = new ArrayList<Team>();
+				List<Team> teams2 = new ArrayList<Team>();
+
 				Game game = new Game();
 				game.setDate(date);
 				game.setGroupe(group);
 				game.setRefree(refree);
 				game.setType(type);
 				game.setTime(time);
-				//game.setStadium(stadium);
+				game.setStadium(stadium);
 				game.setTeam1Goals(team1Goal);
 				game.setTeam1Goals(team2Goal);
-				game.affectGameToTeams(teamsGame);
+				game.setTeams(teamsGame);
 				gameService.create(game);
-				team1.setGame(game);
-				team2.setGame(game);
+				List<Game> games1 = new ArrayList<Game>();
+				List<Game> games2 = new ArrayList<Game>();
+				games1=teamService.findGameOnTeam(team1);
+				games2=teamService.findGameOnTeam(team2);
+				games2=team2.getGame();
+				games1.add(game);
+				team1.setGame(games1);
+				team2.setGame(games2);
+				teamService.update(team1);
+				teamService.update(team2);
+				games.add(game);
+				stadium.affectStadiumToGames(games);
+
+				
+				
 
 
 			
@@ -210,13 +227,7 @@ public class AddGame extends JFrame {
 		btnNewButton.setBounds(296, 340, 89, 44);
 		contentPane.add(btnNewButton);
 		
-		JComboBox stadiumCombo = new JComboBox();
-		stadiumCombo.setBounds(107, 250, 87, 20);
-		contentPane.add(stadiumCombo);
-		/*for(Stadium stadium : stadiums)
-		{
-			stadiumCombo.addItem(stadium.getName());
-		}*/
+		
 		
 		
 		JLabel lblNewLabel_7 = new JLabel("Stadium");

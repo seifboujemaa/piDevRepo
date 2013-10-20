@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Game;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 
 /**
@@ -53,8 +54,30 @@ entityManager.merge(team);
 
 	@Override
 	public Team findTeamByName(String nameTeam) {
-		Query query=entityManager.createQuery("select t from Team t where name = '"+nameTeam+"' ");
+		Query query=entityManager.createQuery("select t from Team t where name='"+nameTeam+"' ");
 		return (Team) query.getSingleResult();
+	}
+
+	@Override
+	public List<Team> findTeamByGame(Game game) {
+		Query query=entityManager.createQuery("select t from Team t where ");
+	
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Team> findTeamByGroup(String stage) {
+		Query query=entityManager.createQuery("select t from Team t where stage ='"+stage+"'");
+		
+		return query.getResultList();
+	}
+	
+	
+
+	@Override
+	public List<Game> findGameOnTeam(Team team) {
+		Query query=entityManager.createQuery("select game from Team  where idTeam='" + team.getIdTeam() +  "' " );
+		return query.getResultList();	
 	}
 
 }

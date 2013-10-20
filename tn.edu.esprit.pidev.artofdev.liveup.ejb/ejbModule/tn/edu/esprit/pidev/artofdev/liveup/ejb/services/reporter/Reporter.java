@@ -68,19 +68,6 @@ public class Reporter implements ReporterRemote, ReporterLocal {
 		
 	}
 
-	@Override
-	public Reporter authentification(String login, String password) {
-		Reporter reporter=null;
-		Query query=em.createQuery("Select r from Reporter r where r.login=:l and r.password=:p ");
-		query.setParameter("l", login).setParameter("p", password);
-		try{
-			reporter=(Reporter) query.getSingleResult();
-		}catch(Exception e){
-			reporter=null;
-		}
-		return reporter;
-		
-	}
 
 	@Override
 	public void disconnect() {
@@ -117,7 +104,13 @@ public class Reporter implements ReporterRemote, ReporterLocal {
 	   em.persist(photo);
 		
 	}
-
+	@Override
+	public void createReporter(
+			tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter reporter) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 

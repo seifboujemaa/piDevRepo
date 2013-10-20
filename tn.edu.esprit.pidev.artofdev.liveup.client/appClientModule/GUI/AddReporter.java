@@ -10,10 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.AddAgentServiceDelegate;
-import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.AddReporterServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.ReporterServicesDelegate;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
 
 import java.awt.event.ActionListener;
@@ -50,7 +47,7 @@ public class AddReporter extends JFrame {
 	 * Create the frame.
 	 */
 	public AddReporter() {
-		final AddReporterServicesDelegate reporterService = new AddReporterServicesDelegate();
+		final ReporterServicesDelegate reporterService = new ReporterServicesDelegate();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -113,6 +110,7 @@ public class AddReporter extends JFrame {
 				reporter.setEmail(email.getText());
 				reporter.setLogin(login.getText());
 				reporter.setPwd(pwd.getText());
+				
 				reporterService.create(reporter);				
 			}
 				

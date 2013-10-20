@@ -47,6 +47,7 @@ public class UpdatePlayerStat extends JFrame {
 	public int yellow ;
 	private JButton btnNewButton;
 	UpdatePlayerStatForm updateForm ;
+	private JButton delete;
 
 	/**
 	 * Launch the application.
@@ -96,7 +97,7 @@ public class UpdatePlayerStat extends JFrame {
 				final DefaultTableModel tab = new DefaultTableModel();
 				tab.setRowCount(0);
 				
-				
+				tab.addColumn("ID");
 				tab.addColumn("First Name");
 				tab.addColumn("Goals");
 				tab.addColumn("Last name");
@@ -113,7 +114,7 @@ public class UpdatePlayerStat extends JFrame {
 					 time = player.getPlayTime();
 					 red = player.getRedCards();
 					 yellow = player.getYellowCards();
-					Object[] obj = {first,goals,last,time,red,yellow} ;
+					Object[] obj = {id,first,goals,last,time,red,yellow} ;
 					tab.addRow(obj);
 				}
 				
@@ -178,6 +179,21 @@ public class UpdatePlayerStat extends JFrame {
 		});
 		btnNewButton.setBounds(454, 55, 89, 33);
 		contentPane.add(btnNewButton);
+		
+		delete = new JButton("Delete");
+		delete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int a = table.getSelectedRow();
+				Player player = new Player();
+				int id = (Integer) table.getValueAt(a, 0);
+				player =playerService.findPlayerById(id);
+				playerService.delete(player);
+				
+				
+			}
+		});
+		delete.setBounds(336, 55, 89, 33);
+		contentPane.add(delete);
 		
 		
 		

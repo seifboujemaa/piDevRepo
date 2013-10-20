@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Photo;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Video;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.chefeditor.ChefEditor;
@@ -18,7 +19,6 @@ public interface ReporterLocal {
 	public void addVideo(Video video);
 	public void deleteVideo(Video video);
 	public void deletePhoto(Photo photo);
-	public Reporter authentification(String login, String password);
 	public void disconnect();
 	public void addPhoto(Photo photo);
 

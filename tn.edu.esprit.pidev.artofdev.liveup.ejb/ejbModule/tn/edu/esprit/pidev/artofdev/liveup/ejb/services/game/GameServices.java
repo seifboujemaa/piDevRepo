@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Game;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 
 
 /**
@@ -81,5 +82,14 @@ public class GameServices implements GameServicesRemote, GameServicesLocal {
 		Query query=entityManager.createQuery("select g from Game g where type='" + type +  "' " );
 		return query.getResultList();			
 	}
+
+	@Override
+	public List<Team> findTeamsOnGame(Game game) {
+		Query query=entityManager.createQuery("select teams from Game  where idGame='" + game.getIdGame() +  "' " );
+		return query.getResultList();			
+		
+	}
+	
+	
 
 }

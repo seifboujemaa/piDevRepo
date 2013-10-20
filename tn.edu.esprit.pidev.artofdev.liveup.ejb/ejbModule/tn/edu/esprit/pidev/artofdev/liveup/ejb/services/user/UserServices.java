@@ -1,5 +1,7 @@
 package tn.edu.esprit.pidev.artofdev.liveup.ejb.services.user;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,33 +18,53 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 	@PersistenceContext
 	EntityManager entityManager;
 
-    /**
-     * Default constructor. 
-     */
-    public UserServices() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public UserServices() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public User authentification(String login, String password) {
-		User user =null;
-		Query query=entityManager.createQuery("Select u from User u where u.login=:l and u.pwd=:p ");
+		User user = null;
+		Query query = entityManager
+				.createQuery("Select u from User u where u.login=:l and u.pwd=:p ");
 		query.setParameter("l", login).setParameter("p", password);
-		try{
-			user=(User) query.getSingleResult();
-		}catch(Exception e){
-			user=null;
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			user = null;
 		}
 		return user;
-		
+
 	}
 
 	@Override
 	public void Create(SubscribedClient client) {
-	  entityManager.persist(client);
-		
+		entityManager.persist(client);
+
 	}
 
-	
+	@Override
+	public List<User> findAllAgent() {
+		Query query = entityManager.createQuery("select u from User u");
+		return query.getResultList();
+	}
 
+	@Override
+	public User authentificationCondition(String login, String password) {
+		User user = null;
+		Query query = entityManager
+				.createQuery("Select u from User u where u.login=:l and u.pwd=:p and u.status= :s");
+		query.setParameter("l", login).setParameter("p", password)
+				.setParameter("s", true);
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			user = null;
+		}
+		return user;
+
+	}
 }

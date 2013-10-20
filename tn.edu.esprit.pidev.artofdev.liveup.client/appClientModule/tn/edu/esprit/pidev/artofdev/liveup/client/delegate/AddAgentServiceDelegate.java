@@ -9,7 +9,6 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.agent.AgentServicesRemot
 public class AddAgentServiceDelegate {
 
 private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/AgentServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.agent.AgentServicesRemote";
-
 	
 	private static AgentServicesRemote getProxy(){
 		return (AgentServicesRemote)ServiceLocator

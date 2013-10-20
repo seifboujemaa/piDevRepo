@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.AuthentificationDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.ChefEditor;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.User;
@@ -31,6 +32,7 @@ public class AuthentificationSwing extends JFrame {
 	private JTextField textField;
 	UserServicesRemote remote = null;
 	private JPasswordField passwordField;
+	static AuthentificationSwing frame = null ;
 
 	/**
 	 * Launch the application.
@@ -39,7 +41,7 @@ public class AuthentificationSwing extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AuthentificationSwing frame = new AuthentificationSwing();
+					 frame = new AuthentificationSwing();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,16 +54,16 @@ public class AuthentificationSwing extends JFrame {
 	 * Create the frame.
 	 */
 	public AuthentificationSwing() {
+		final AuthentificationDelegate authentificationDelegate = new AuthentificationDelegate();
 		
-		
-		try {
-			Context context= new InitialContext();
-		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/UserServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.user.UserServicesRemote");
-		remote =  (UserServicesRemote) o;
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Context context= new InitialContext();
+//		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/UserServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.user.UserServicesRemote");
+//		remote =  (UserServicesRemote) o;
+//		} catch (NamingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 		
@@ -89,20 +91,22 @@ public class AuthentificationSwing extends JFrame {
 		btnConnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				User user =remote.authentification(textField.getText(), passwordField.getText());
-				if(user!=null){
-					if(user instanceof ChefEditor)
-						 {new ChefEditorArticleSwing().setVisible(true);
-		                 setVisible(false);}
-					if(user instanceof Reporter){
-					new ReporterPhotoViewDeleteSwing().setVisible(true);
-	                setVisible(false);}
-					}
-				else {JLabel label = new JLabel("");
-				label.setBounds(113, 190, 217, 14);
-				contentPane.add(label);
-				label.setText("Login  failed !");
-				}
+				authentificationDelegate.Authentification(frame, textField.getText(), passwordField.getText(), contentPane);
+				
+//				User user =remote.authentification(textField.getText(), passwordField.getText());
+//				if(user!=null){
+//					if(user instanceof ChefEditor)
+//						 {new ChefEditorArticleSwing().setVisible(true);
+//		                 setVisible(false);}
+//					if(user instanceof Reporter){
+//					new ReporterPhotoViewDeleteSwing().setVisible(true);
+//	                setVisible(false);}
+//					}
+//				else {JLabel label = new JLabel("");
+//				label.setBounds(113, 190, 217, 14);
+//				contentPane.add(label);
+//				label.setText("Login  failed !");
+//				}
 			} 
 				
 		

@@ -28,6 +28,9 @@ public class Game implements Serializable {
 	private Agent agent;
 	private Stadium stadium;
 	
+	
+	
+
 	private List<Photo> photos = new ArrayList<Photo>();
 	private List<Video> videos = new ArrayList<Video>();
 	private List<Event> events = new ArrayList<Event>();
@@ -123,7 +126,7 @@ public class Game implements Serializable {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
-	@OneToOne(mappedBy="game")
+	@ManyToOne
 	public Stadium getStadium() {
 		return stadium;
 	}
@@ -131,7 +134,9 @@ public class Game implements Serializable {
 	public void setStadium(Stadium stadium) {
 		this.stadium = stadium;
 	}
-	@OneToMany(mappedBy="game",cascade=CascadeType.ALL)
+	
+	
+	@ManyToMany
 	public List<Team> getTeams() {
 		return teams;
 	}
@@ -140,11 +145,13 @@ public class Game implements Serializable {
 		this.teams = teams;
 	}
 	
-	 public void affectGameToTeams(List<Team> teams){
+	
+	
+	/* public void affectGameToTeams(List<Team> teams){
 			for(Team team:teams){
 				team.setGame(this);
 				this.getTeams().add(team);
 			}
-		}
+		}*/
    
 }

@@ -41,7 +41,7 @@ EntityManager entityManager ;
 	}
 
 	@Override
-	public Event findStadiumById(int idEvent) {
+	public Event findEventById(int idEvent) {
 		Event event = entityManager.find(Event.class, idEvent);
 		return event;
 	}
