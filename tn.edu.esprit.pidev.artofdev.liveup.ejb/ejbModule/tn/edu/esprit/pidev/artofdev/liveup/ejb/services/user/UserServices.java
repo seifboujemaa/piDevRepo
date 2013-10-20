@@ -45,6 +45,20 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		Query query=entityManager.createQuery("select u from User u");
 		return query.getResultList();
 	}
+
+	@Override
+	public User authentificationCondition(String login, String password) {
+		User user =null;
+		Query query=entityManager.createQuery("Select u from User u where u.login=:l and u.pwd=:p and u.status= :s");
+		query.setParameter("l", login).setParameter("p", password).setParameter("s", true);
+		try{
+			user=(User) query.getSingleResult();
+		}catch(Exception e){
+			user=null;
+		}
+		return user;
+	
+	}
 	}
 
 	
