@@ -71,5 +71,13 @@ entityManager.merge(team);
 		
 		return query.getResultList();
 	}
+	
+	
+
+	@Override
+	public List<Game> findGameOnTeam(Team team) {
+		Query query=entityManager.createQuery("select game from Team  where idTeam='" + team.getIdTeam() +  "' " );
+		return query.getResultList();	
+	}
 
 }

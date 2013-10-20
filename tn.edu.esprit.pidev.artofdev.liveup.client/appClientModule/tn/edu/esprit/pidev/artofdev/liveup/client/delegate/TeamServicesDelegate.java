@@ -54,4 +54,9 @@ private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup
 		return getProxy().findTeamByGroup(group);
 	}
 
+	public List<Game> findGameOnTeam(Team team)
+	{
+		return getProxy().findGameOnTeam(team);
+	}
+	
 }

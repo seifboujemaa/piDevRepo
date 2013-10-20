@@ -190,6 +190,9 @@ public class AddGame extends JFrame {
 				stadium =stadiumService.findStadiumByName((String)stadiumCombo.getSelectedItem());
 				
 				List<Game> games = new ArrayList<Game>();
+				List<Team> teams1 = new ArrayList<Team>();
+				List<Team> teams2 = new ArrayList<Team>();
+
 				Game game = new Game();
 				game.setDate(date);
 				game.setGroupe(group);
@@ -203,7 +206,8 @@ public class AddGame extends JFrame {
 				gameService.create(game);
 				List<Game> games1 = new ArrayList<Game>();
 				List<Game> games2 = new ArrayList<Game>();
-				games1 =team1.getGame() ;
+				games1=teamService.findGameOnTeam(team1);
+				games2=teamService.findGameOnTeam(team2);
 				games2=team2.getGame();
 				games1.add(game);
 				team1.setGame(games1);

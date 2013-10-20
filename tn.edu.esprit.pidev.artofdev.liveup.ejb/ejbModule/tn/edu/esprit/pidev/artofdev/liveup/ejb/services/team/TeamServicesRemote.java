@@ -17,6 +17,7 @@ public interface TeamServicesRemote {
 	public List<Team> findAllTeam();
 	public List<Team>  findTeamByGame(Game game);
 	public List<Team> findTeamByGroup(String stage) ;
-
+	
+	public List<Game> findGameOnTeam(Team team);
 
 }
