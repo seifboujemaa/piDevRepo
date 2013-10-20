@@ -25,7 +25,7 @@ private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup
 		
 	}
 	
-	public static void update(Freelance freelance) {
+	public static void update(FreeLance freelance) {
 		getProxy().updateFreelance(freelance);
 		
 	}
@@ -33,7 +33,7 @@ private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup
 		getProxy().deleteFreelance(freelance);
 		
 	}
-	public static List<Freelance> findAllFreeLance() {
+	public static List<FreeLance> findAllFreeLance() {
 		return getProxy().findAllFreelance();
 		
 	}

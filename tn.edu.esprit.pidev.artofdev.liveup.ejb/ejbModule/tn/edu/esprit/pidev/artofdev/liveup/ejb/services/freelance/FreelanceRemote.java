@@ -14,10 +14,10 @@ public interface FreelanceRemote {
 	
 	
 	public void createFreelance(Freelance freelance);
-	public void updateFreelance(Freelance freelance);
+	public void updateFreelance(FreeLance freelance);
 	public void deleteFreelance(Freelance freelance);
 	public FreeLance findFreelanceById(int idFreelance);
-	public List<Freelance> findAllFreelance(); 
+	public List<FreeLance> findAllFreelance(); 
 	
 	public List<Article> viewArticle();
 	public List<News> viewNews();
