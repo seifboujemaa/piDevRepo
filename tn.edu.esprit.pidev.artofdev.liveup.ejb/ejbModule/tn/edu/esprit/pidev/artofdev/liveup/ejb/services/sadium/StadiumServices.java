@@ -55,4 +55,10 @@ EntityManager entityManager ;
 		return query.getResultList();
 	}
 
+	@Override
+	public Stadium findStadiumByName(String nameStadium) {
+		Query query=entityManager.createQuery("select s from Stadium s where name = '"+nameStadium+"'");
+		return (Stadium) query.getSingleResult();
+	}
+
 }

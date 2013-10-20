@@ -15,6 +15,7 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Stadium;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
 
 public class AddStadium extends JFrame {
 
@@ -22,6 +23,7 @@ public class AddStadium extends JFrame {
 	private JTextField Name;
 	private JTextField Address;
 	private JTextField Capacity;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -45,7 +47,7 @@ public class AddStadium extends JFrame {
 	public AddStadium() {
 		final StadiumServicesDelegate stadiumService= new StadiumServicesDelegate() ;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 608, 404);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -94,7 +96,11 @@ public class AddStadium extends JFrame {
 				stadiumService.create(stadium);
 			}
 		});
-		btnNewButton.setBounds(300, 204, 89, 23);
+		btnNewButton.setBounds(296, 308, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		table = new JTable();
+		table.setBounds(531, 219, -228, -134);
+		contentPane.add(table);
 	}
 }

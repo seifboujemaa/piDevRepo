@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Game;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 
 
 @Remote
@@ -19,5 +20,6 @@ public interface GameServicesRemote {
 	public List<Game> findGameByTeam(String team);
 	public List<Game> findGameByGroup(String group);
 	public List<Game> findGameByType(String type);
+	public List<Team> findTeamsOnGame(Game game);
 
 }

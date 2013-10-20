@@ -67,12 +67,12 @@ public class UpdatePlayerStatForm extends JFrame {
 		first.setColumns(10);
 		
 		
-		goal.setBounds(119, 103, 86, 20);
+		goal.setBounds(119, 171, 86, 20);
 		contentPane.add(goal);
 		goal.setColumns(10);
 		
 	
-		last.setBounds(119, 162, 86, 20);
+		last.setBounds(119, 103, 86, 20);
 		contentPane.add(last);
 		last.setColumns(10);
 		
@@ -104,11 +104,11 @@ public class UpdatePlayerStatForm extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("Last Name");
-		lblNewLabel_3.setBounds(20, 165, 64, 14);
+		lblNewLabel_3.setBounds(20, 106, 64, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Goals");
-		lblNewLabel_4.setBounds(20, 106, 70, 14);
+		lblNewLabel_4.setBounds(20, 174, 70, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("First Name");

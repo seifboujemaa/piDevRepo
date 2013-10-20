@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 
 /**
  * Session Bean implementation class AgentServices
@@ -47,8 +48,10 @@ EntityManager entityManager ;
 
 	@Override
 	public List<Agent> findAllAgent() {
-		Query query=entityManager.createQuery("select a from Agent a");
-		return query.getResultList();
+		Query query = entityManager.createQuery("from agent e");
+		List<Agent> agents = query.getResultList();
+		//System.out.println("EntityManager returned "+journalists.size()+" journalists");
+		return agents;
 	}
 
 }
