@@ -31,4 +31,5 @@ public interface AdministratorServicesLocal {
 	public List<FreeLance> findAllFreelance(); 
 	public void createChefEditor(ChefEditor chefeditor);
 	public void createReporter(Reporter reporter);
+	
 }

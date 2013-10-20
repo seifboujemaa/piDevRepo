@@ -1,10 +1,13 @@
 package tn.edu.esprit.pidev.artofdev.liveup.ejb.services.user;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.User;
 
 /**
@@ -36,6 +39,15 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		
 	}
 
+	@Override
+	public List<User> findAllAgent() {
+		
+		Query query=entityManager.createQuery("select u from User u");
+		return query.getResultList();
+	}
+	}
+
 	
 
-}
+	
+
