@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 @Stateless
@@ -49,7 +50,9 @@ public ArticleServices(){
 	@Override
 	public List<Article> findAllArticle() {
 		Query query=entityManager.createQuery("select b from Article b");
-		return query.getResultList();
+List<Article> articles = query.getResultList();
+		
+		return articles;
 	}
 	
 

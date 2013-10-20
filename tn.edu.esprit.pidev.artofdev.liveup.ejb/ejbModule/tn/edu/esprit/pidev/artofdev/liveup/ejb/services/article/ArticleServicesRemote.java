@@ -2,8 +2,10 @@ package tn.edu.esprit.pidev.artofdev.liveup.ejb.services.article;
 
 import java.util.List;
 
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
+import javax.ejb.Remote;
 
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
+@Remote
 public interface ArticleServicesRemote {
 	public void createArticle(Article article);
 	public void updateArticle(Article article);
