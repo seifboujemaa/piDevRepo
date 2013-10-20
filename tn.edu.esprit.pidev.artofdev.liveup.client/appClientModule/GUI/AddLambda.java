@@ -3,6 +3,9 @@ package GUI;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,14 +13,19 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.LambdaServicesDelegate;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Lambda;
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.SubscribedclientServiceDelegate;
+
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.SubscribedClient;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.article.ArticleServicesRemote;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.user.UserServicesRemote;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AddLambda extends JFrame {
 
+	UserServicesRemote remote = null;
+	
 	private JPanel contentPane;
 	private JTextField login;
 	private JTextField pswd;
@@ -45,7 +53,16 @@ public class AddLambda extends JFrame {
 	 * Create the frame.
 	 */
 	public AddLambda() {
-		final LambdaServicesDelegate  lambdaService = new LambdaServicesDelegate () ;
+		
+		try {
+			Context context= new InitialContext();
+		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/LambdaServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.lambda.LambdaServicesRemote");
+		remote =  (UserServicesRemote) o;
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	}
+		final SubscribedclientServiceDelegate  subscribedclient= new SubscribedclientServiceDelegate () ;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -101,14 +118,14 @@ public class AddLambda extends JFrame {
 		JButton btnNewButton = new JButton("add");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Lambda lambda = new Lambda() ;
+				SubscribedClient lambda = new SubscribedClient();
 				lambda.setEmail(mail.getText());
 				lambda.setFirstName(first.getText());
 				lambda.setLastName(last.getText());
 				lambda.setLogin(login.getText());
 				lambda.setPwd(pswd.getText());
-				lambdaService.create(lambda);
-				
+				lambda.setStatus(true);
+				subscribedclient.create(lambda);
 			}
 		});
 		btnNewButton.setBounds(250, 208, 89, 23);

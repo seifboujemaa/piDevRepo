@@ -12,7 +12,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.NewsServicesDelegate;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Lambda;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 import java.awt.event.ActionListener;

@@ -57,6 +57,15 @@ public class AddArticleFreelance extends JFrame {
 	 */
 	public AddArticleFreelance() {
 		
+		try {
+			Context context= new InitialContext();
+		Object o=	context.lookup("ejb:/tn.edu.esprit.pidev.artofdev.liveup.ejb/ArticleServices!tn.edu.esprit.pidev.artofdev.liveup.ejb.services.article.ArticleServicesRemote");
+		remote =  (ArticleServicesRemote) o;
+		} catch (NamingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+	}
+		
 		
 		try {
 			Context context= new InitialContext();

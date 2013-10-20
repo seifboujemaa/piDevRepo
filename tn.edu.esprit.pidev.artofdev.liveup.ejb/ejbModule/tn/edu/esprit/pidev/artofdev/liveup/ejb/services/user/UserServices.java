@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.SubscribedClient;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.User;
 
 /**
@@ -33,6 +34,12 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 			user=null;
 		}
 		return user;
+		
+	}
+
+	@Override
+	public void Create(SubscribedClient client) {
+	  entityManager.persist(client);
 		
 	}
 
