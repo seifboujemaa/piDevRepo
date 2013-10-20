@@ -5,10 +5,12 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.ArticleServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.NewsServicesDelegate;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
-public class NewsTableModel extends AbstractTableModel {
+public class ArticleTableModel extends AbstractTableModel {
 	
 	
 	/**
@@ -17,11 +19,11 @@ public class NewsTableModel extends AbstractTableModel {
 	
 	private static final long serialVersionUID = 1L;
 	private String[] columns = { "Title", "Paragraph" , "Day" , "type","Status"};
-	private List<News> data = new ArrayList<News>();
+	private List<Article> data = new ArrayList<Article>();
 	
-	public NewsTableModel(){
-		data= NewsServicesDelegate.findAllNews();
-		System.out.println("Got "+data.size()+" news");
+	public ArticleTableModel(){
+		data= ArticleServicesDelegate.findAllArticle();
+		System.out.println("Got "+data.size()+" article");
 	}
 
 	@Override
@@ -36,22 +38,22 @@ public class NewsTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int row, int column) {
-		News news = data.get(row);
+		Article article = data.get(row);
 		switch (column) {
 		case 0:
-			return news.getTitle();
+			return article.getTitle();
 		case 1:
-			return news.getParagraph();
+			return article.getParagraph();
 		case 2:
-			return news.getDay();
+			return article.getDay();
 		case 3:
-			return news.getType();
+			return article.getType();
 		case 4:
-			return news.isStatus();
+			return article.isStatus();
 		
 		
 		default:
-			return news;
+			return article;
 		}
 	}
 	
