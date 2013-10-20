@@ -31,5 +31,5 @@ public interface AdministratorServicesRemote {
 	public List<FreeLance> findAllFreelance(); 
 	public void createChefEditor(ChefEditor chefeditor);
 	public void createReporter(Reporter reporter);
-	
+	public List<ChefEditor> findAllChefeditor();
 }

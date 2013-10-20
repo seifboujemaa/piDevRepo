@@ -145,6 +145,12 @@ public class AdministratorServices implements AdministratorServicesRemote, Admin
 		
 	}
 
+	@Override
+	public List<ChefEditor> findAllChefeditor() {
+		Query query=entityManager.createQuery("select a from Agent a");
+		return query.getResultList();
+	}
+
 	
 
 	

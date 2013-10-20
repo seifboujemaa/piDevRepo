@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.AddAgentServiceDelegate;
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.FreelanceServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.JournalistServiceDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;

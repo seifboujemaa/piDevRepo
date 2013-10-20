@@ -25,24 +25,24 @@ private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup
 		getProxy().createChefEditor(chefeditor);
 		
 	}
-	/*
-	public static void update(ChefEditor chefeditor) {
-		getProxy().updateChefEditor(chefeditor);
+	
+	//public static void update(ChefEditor chefeditor) {
+		//getProxy().updateChefEditor(chefeditor);
 		
-	}
-	public static void delete(Agent agent) {
-		getProxy().deleteAgent(agent);
+	//}
+	//public static void delete(Agent agent) {
+		//getProxy().deleteAgent(agent);
 		
+	//}
+	public static List<ChefEditor> findAllChefeditor() {
+		return getProxy().findAllChefeditor();
 	}
-	public static List<Agent> findAllAgent() {
-		return getProxy().findAllAgent();
-		
-	}
-	public static Agent findAgentById(int idAgent) {
-		return getProxy().findAgentById(idAgent);
+	
+	//public static Agent findAgentById(int idAgent) {
+		//return getProxy().findAgentById(idAgent);
 		
 	}
 	
-	*/
+	
 
-}
+

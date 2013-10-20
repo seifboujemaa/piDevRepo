@@ -48,10 +48,8 @@ EntityManager entityManager ;
 
 	@Override
 	public List<Agent> findAllAgent() {
-		Query query = entityManager.createQuery("from agent e");
-		List<Agent> agents = query.getResultList();
-		//System.out.println("EntityManager returned "+journalists.size()+" journalists");
-		return agents;
+		Query query=entityManager.createQuery("select e from Agent e");
+		return query.getResultList();
 	}
 
 }
