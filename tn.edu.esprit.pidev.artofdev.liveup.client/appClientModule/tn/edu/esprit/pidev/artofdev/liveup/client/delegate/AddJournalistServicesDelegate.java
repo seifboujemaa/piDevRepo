@@ -2,7 +2,7 @@ package tn.edu.esprit.pidev.artofdev.liveup.client.delegate;
 
 import java.util.List;
 
-import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocater.ServiceLocator;
+import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocator.ServiceLocator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.journalist.JournalistServicesRemote;
 

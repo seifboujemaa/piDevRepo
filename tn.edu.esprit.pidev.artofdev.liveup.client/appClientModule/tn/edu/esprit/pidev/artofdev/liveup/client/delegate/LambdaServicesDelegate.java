@@ -1,6 +1,6 @@
 package tn.edu.esprit.pidev.artofdev.liveup.client.delegate;
 
-import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocater.ServiceLocator;
+import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocator.ServiceLocator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Lambda;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Player;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;

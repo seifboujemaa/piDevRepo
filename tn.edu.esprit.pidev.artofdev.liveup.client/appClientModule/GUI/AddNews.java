@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -16,6 +17,10 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
+
+import GUI.model.JournalistTableModel;
+import GUI.model.NewsTableModel;
 
 public class AddNews extends JFrame {
 
@@ -24,7 +29,8 @@ public class AddNews extends JFrame {
 	private JTextField parag;
 	private JTextField day;
 	private JTextField type;
-	private JTextField status;
+	
+	protected static JTable NewsTable;
 
 	/**
 	 * Launch the application.
@@ -48,7 +54,7 @@ public class AddNews extends JFrame {
 	public AddNews() {
 		final NewsServicesDelegate newsService = new NewsServicesDelegate();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 700, 461);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -70,10 +76,6 @@ public class AddNews extends JFrame {
 		lblNewLabel_3.setBounds(10, 178, 46, 14);
 		contentPane.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("Status");
-		lblNewLabel_4.setBounds(10, 203, 46, 14);
-		contentPane.add(lblNewLabel_4);
-		
 		title = new JTextField();
 		title.setBounds(148, -3, 86, 20);
 		contentPane.add(title);
@@ -94,11 +96,6 @@ public class AddNews extends JFrame {
 		contentPane.add(type);
 		type.setColumns(10);
 		
-		status = new JTextField();
-		status.setBounds(66, 200, 86, 20);
-		contentPane.add(status);
-		status.setColumns(10);
-		
 		JButton btnPost = new JButton("post");
 		btnPost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -111,8 +108,16 @@ public class AddNews extends JFrame {
 				newsService.create(news);
 			}
 		});
-		btnPost.setBounds(229, 228, 89, 23);
+		btnPost.setBounds(163, 269, 89, 23);
 		contentPane.add(btnPost);
+		
+		JScrollPane newsTable = new JScrollPane();
+		newsTable.setBounds(299, 50, 359, 242);
+		contentPane.add(newsTable);
+		
+		NewsTable = new JTable();
+		newsTable.setViewportView(NewsTable);
+		final NewsTableModel newsTableModel = new NewsTableModel();
+		NewsTable.setModel(newsTableModel);
 	}
-
 }
