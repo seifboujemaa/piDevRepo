@@ -60,21 +60,10 @@ public class Schedule extends JFrame {
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 668, 650);
+		setBounds(100, 100, 857, 650);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		
-		
-		
-		
-		
-		
-		table = new JTable();
-		table.setBounds(29, 100, 567, 325);
-		contentPane.add(table);
 		
 				final DefaultTableModel tab = new DefaultTableModel();
 				tab.setRowCount(0);
@@ -83,9 +72,12 @@ public class Schedule extends JFrame {
 					tab.addColumn("ID");
 				    tab.addColumn("Date");
 					tab.addColumn("Time");
+					tab.addColumn("Ref");
 					tab.addColumn("Match Schedule");
 					tab.addColumn("Team1");
 					tab.addColumn("Team2");
+					tab.addColumn("Team1 Score");
+					tab.addColumn("Team2 Score");
 					
 					games = gameService.findAllGame();
 
@@ -99,11 +91,13 @@ public class Schedule extends JFrame {
 						 int id = game.getIdGame();
 						 Date date = game.getDate();
 						 String time = game.getTime();
+						 String ref = game.getRefree();
 						 String group = game.getGroupe();
 						 teams = gameService.findTeamsOnGame(game);
 						 team1=teams.get(0).getName();
 						 team2=teams.get(1).getName();
-						 String ref = game.getRefree();
+						 int goal1 = game.getTeam1Goals();
+						 int goal2 = game.getTeam2Goals();
 						 String stad = game.getStadium().toString();
 						 
 						 
@@ -112,12 +106,12 @@ public class Schedule extends JFrame {
 						 
 						 
 						
-						Object[] obj = {id,date,time,group,team1,team2} ;
+						Object[] obj = {id,date,time,ref,group,team1,team2,goal1,goal2} ;
 						tab.addRow(obj);
 					}
-					table.setModel(tab);
 					
 					JButton btnNewButton = new JButton("Delete");
+					btnNewButton.setBounds(495, 55, 108, 30);
 					btnNewButton.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) { 
 							int a = table.getSelectedRow();
@@ -130,28 +124,32 @@ public class Schedule extends JFrame {
 							
 								}
 					});
-					btnNewButton.setBounds(495, 55, 108, 30);
+					contentPane.setLayout(null);
 					contentPane.add(btnNewButton);
 					
 					up = new JButton("Update");
+					up.setBounds(353, 55, 108, 30);
 					up.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
-							int a = table.getSelectedRow();
-							Game game = new Game();
-							int id=(Integer) table.getValueAt(a,0);
-							game=gameService.findGameById(id);
-							Date date = (Date) table.getValueAt(a,1);
-							String time = (String) table.getValueAt(a,2);
-							String group = (String) table.getValueAt(a,3);
-							game.setDate(date);
-							game.setTime(time);
-							game.setGroupe(group);
-							gameService.update(game);
+							
 							
 						}
 					});
-					up.setBounds(353, 55, 108, 30);
 					contentPane.add(up);
+					
+					JScrollPane scrollPane_1 = new JScrollPane();
+					scrollPane_1.setBounds(10, 115, 799, 453);
+					contentPane.add(scrollPane_1);
+					
+					
+					
+					
+					
+					
+					
+					table = new JTable();
+					scrollPane_1.setViewportView(table);
+					table.setModel(tab);
 					
 					
 					

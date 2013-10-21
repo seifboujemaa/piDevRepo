@@ -111,7 +111,22 @@ public class UpdateTeamStat extends JFrame {
 		
 		 
 		
+		final JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(130, 240, 105, 20);
+		contentPane.add(comboBox);
 		
+		comboBox.addItem("Group A");
+		comboBox.addItem("Group B");
+		comboBox.addItem("Group C");
+		comboBox.addItem("Group D");
+		comboBox.addItem("Group E");
+		comboBox.addItem("Group F");
+		comboBox.addItem("Group G");
+		comboBox.addItem("Group H");
+		comboBox.addItem("Final Quarter");
+		comboBox.addItem("3rd Place");
+		comboBox.addItem("Semi Final");
+		comboBox.addItem("Final");
 		
 	
 		
@@ -126,12 +141,14 @@ public class UpdateTeamStat extends JFrame {
 				int victories = Integer.parseInt(Victories.getText());
 				int draws = Integer.parseInt(Draws.getText());
 				int defeats = Integer.parseInt(Defeats.getText());
+				String stage = comboBox.getSelectedItem().toString();
 				
 				
 				
 				team.setDraws(draws);
 				team.setDefeats(defeats);
 				team.setVictories(victories);
+				team.setStage(stage);
 				teamService.update(team);
 				
 				
@@ -142,6 +159,12 @@ public class UpdateTeamStat extends JFrame {
 		});
 		btnNewButton.setBounds(249, 277, 89, 23);
 		contentPane.add(btnNewButton);
+		
+		
+		
+		JLabel lblStage = new JLabel("Stage");
+		lblStage.setBounds(32, 243, 64, 14);
+		contentPane.add(lblStage);
 		
 		
 		

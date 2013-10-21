@@ -23,6 +23,8 @@ import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Stadium;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class AddGame extends JFrame {
 
@@ -33,6 +35,8 @@ public class AddGame extends JFrame {
 	private JTextField team2Score;
 	private List<Team> teams ;
 	private List<Stadium> stadiums ;
+	final JComboBox teamCombo1 = new JComboBox();
+	final JComboBox teamCombo2 = new JComboBox();
 
 
 	/**
@@ -59,9 +63,9 @@ public class AddGame extends JFrame {
 		final StadiumServicesDelegate stadiumService = new StadiumServicesDelegate();
 		final GameServicesDelegate gameService = new GameServicesDelegate();
 		
-		teams = new ArrayList<Team>();
-		teams=teamService.findAllTeam();
-		stadiums=stadiumService.findAllStadium();
+		
+		
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 509, 462);
@@ -69,23 +73,53 @@ public class AddGame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		final JComboBox teamCombo1 = new JComboBox();
-		teamCombo1.setBounds(107, 25, 109, 20);
-		contentPane.add(teamCombo1);
-		for(Team team : teams)
-		{
-			teamCombo1.addItem(team.getName());
-		}
+		final JComboBox typeCombo = new JComboBox();
 		
 		
-		final JComboBox teamCombo2 = new JComboBox();
-		teamCombo2.setBounds(107, 84, 109, 20);
-		contentPane.add(teamCombo2);
-		for(Team team : teams)
-		{
-			teamCombo2.addItem(team.getName());
-		}
+		typeCombo.setBounds(107, 337, 87, 20);
+		contentPane.add(typeCombo);
+		typeCombo.addItem("Group A");
+		typeCombo.addItem("Group B");
+		typeCombo.addItem("Group C");
+		typeCombo.addItem("Group D");
+		typeCombo.addItem("Group E");
+		typeCombo.addItem("Group F");
+		typeCombo.addItem("Group G");
+		typeCombo.addItem("Group H");
+		typeCombo.addItem("Final Quarter");
+		typeCombo.addItem("3rd Place");
+		typeCombo.addItem("Semi Final");
+		typeCombo.addItem("Final");
+		
+		teams = new ArrayList<Team>();
+		teams=teamService.findAllTeam();
+		
+		
+			
+				teamCombo1.setBounds(107, 25, 109, 20);
+				contentPane.add(teamCombo1);
+				for(Team team : teams)
+				{
+					teamCombo1.addItem(team.getName());
+				}
+				
+				
+				
+				teamCombo2.setBounds(107, 84, 109, 20);
+				contentPane.add(teamCombo2);
+				for(Team team : teams)
+				{
+					teamCombo2.addItem(team.getName());
+				}
+			
+				
+				
+	
+		
+		
+		stadiums=stadiumService.findAllStadium();
+		
+		
 		
 		JLabel lblNewLabel = new JLabel("Team 1 ");
 		lblNewLabel.setBounds(32, 28, 46, 14);
@@ -121,21 +155,7 @@ public class AddGame extends JFrame {
 		lblNewLabel_4.setBounds(32, 298, 46, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		final JComboBox typeCombo = new JComboBox();
-		typeCombo.setBounds(107, 337, 87, 20);
-		contentPane.add(typeCombo);
-		typeCombo.addItem("Group A");
-		typeCombo.addItem("Group B");
-		typeCombo.addItem("Group C");
-		typeCombo.addItem("Group D");
-		typeCombo.addItem("Group E");
-		typeCombo.addItem("Group F");
-		typeCombo.addItem("Group G");
-		typeCombo.addItem("Group H");
-		typeCombo.addItem("Final Quarter");
-		typeCombo.addItem("3rd Place");
-		typeCombo.addItem("Semi Final");
-		typeCombo.addItem("Final");
+		
 
 		
 		

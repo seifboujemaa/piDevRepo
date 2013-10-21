@@ -32,12 +32,6 @@ public class UpdatePlayerStat extends JFrame {
 	private JPanel contentPane;
 	List<Player> players = new ArrayList<Player>();
 	private JTable table;
-	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
-	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
-	private JLabel lblNewLabel_6;
 	public static int id ;
 	public String first ;
 	public String last ;
@@ -48,6 +42,7 @@ public class UpdatePlayerStat extends JFrame {
 	private JButton btnNewButton;
 	UpdatePlayerStatForm updateForm ;
 	private JButton delete;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Launch the application.
@@ -78,11 +73,14 @@ public class UpdatePlayerStat extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(47, 146, 525, 224);
+		contentPane.add(scrollPane);
 	
 		
 		table = new JTable();
-		table.setBounds(47, 146, 525, 224);
-		contentPane.add(table);
+		scrollPane.setViewportView(table);
 		
 			
 		
@@ -133,30 +131,6 @@ public class UpdatePlayerStat extends JFrame {
 		JLabel lblNewLabel = new JLabel("Select Team");
 		lblNewLabel.setBounds(27, 69, 94, 14);
 		contentPane.add(lblNewLabel);
-		
-		lblNewLabel_1 = new JLabel("First Name");
-		lblNewLabel_1.setBounds(47, 129, 74, 14);
-		contentPane.add(lblNewLabel_1);
-		
-		lblNewLabel_2 = new JLabel("Goals");
-		lblNewLabel_2.setBounds(143, 129, 46, 14);
-		contentPane.add(lblNewLabel_2);
-		
-		lblNewLabel_3 = new JLabel("Last Name");
-		lblNewLabel_3.setBounds(228, 129, 75, 14);
-		contentPane.add(lblNewLabel_3);
-		
-		lblNewLabel_4 = new JLabel("Play Time");
-		lblNewLabel_4.setBounds(313, 129, 60, 14);
-		contentPane.add(lblNewLabel_4);
-		
-		lblNewLabel_5 = new JLabel("Yellow Cards");
-		lblNewLabel_5.setBounds(486, 129, 74, 14);
-		contentPane.add(lblNewLabel_5);
-		
-		lblNewLabel_6 = new JLabel("Red Cards");
-		lblNewLabel_6.setBounds(400, 129, 60, 14);
-		contentPane.add(lblNewLabel_6);
 		
 		btnNewButton = new JButton("Update");
 		btnNewButton.addActionListener(new ActionListener() {

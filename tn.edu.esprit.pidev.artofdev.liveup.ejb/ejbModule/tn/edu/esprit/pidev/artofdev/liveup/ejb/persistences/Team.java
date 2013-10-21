@@ -107,7 +107,7 @@ public class Team implements Serializable {
    
   
 	   
-   @OneToMany(mappedBy="team")
+   @OneToMany(mappedBy="team",cascade=CascadeType.PERSIST)
    public List<Player> getPlayers() {
 	return players;
 }
@@ -118,6 +118,7 @@ public class Team implements Serializable {
    public void affectTeamToPlayers(List<Player> players){
 		for(Player player:players){
 			player.setTeam(this);
+			
 			this.getPlayers().add(player);
 		}
 	}

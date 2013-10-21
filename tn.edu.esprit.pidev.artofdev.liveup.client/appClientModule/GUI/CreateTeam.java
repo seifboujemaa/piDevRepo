@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.PlayerServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.TeamServicesDelegate;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Player;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
@@ -18,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 
 public class CreateTeam extends JFrame {
 
@@ -27,7 +29,6 @@ public class CreateTeam extends JFrame {
 	private JTextField textField_6;
 	
 	List<Player> players = new ArrayList<Player>();
-	private JTextField stageField;
 
 
 	public JTextField getTextField() {
@@ -59,6 +60,8 @@ public class CreateTeam extends JFrame {
 	 */
 	public CreateTeam() {
 		final TeamServicesDelegate teamService = new TeamServicesDelegate();
+		final PlayerServicesDelegate playerService = new PlayerServicesDelegate();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 516, 236);
 		contentPane = new JPanel();
@@ -75,15 +78,30 @@ public class CreateTeam extends JFrame {
 		lblNewLabel.setBounds(58, 14, 88, 14);
 		contentPane.add(lblNewLabel);
 		
+		final JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(359, 11, 101, 20);
+		contentPane.add(comboBox);
+		
+		comboBox.addItem("Group A");
+		comboBox.addItem("Group B");
+		comboBox.addItem("Group B");
+		comboBox.addItem("Group C");
+		comboBox.addItem("Group D");
+		comboBox.addItem("Group E");
+		comboBox.addItem("Group F");
+		comboBox.addItem("Group G");
+		comboBox.addItem("Group H");
+		
 		JButton btnNewButton = new JButton("New button");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Team team = new Team();
 				team.setName(textField.getText());
-				team.affectTeamToPlayers(players);
-				team.setStage(stageField.getText());
+				team.setStage(comboBox.getSelectedItem().toString());
 				//team.setPlayers(players);
+				team.affectTeamToPlayers(players);
 				teamService.create(team);
+				
 				
 				players.clear();
 		}
@@ -121,13 +139,10 @@ public class CreateTeam extends JFrame {
 		btnNewButton_1.setBounds(299, 66, 89, 23);
 		contentPane.add(btnNewButton_1);
 		
-		stageField = new JTextField();
-		stageField.setBounds(372, 11, 86, 20);
-		contentPane.add(stageField);
-		stageField.setColumns(10);
-		
 		JLabel lblNewLabel_1 = new JLabel("Group");
 		lblNewLabel_1.setBounds(299, 14, 63, 14);
 		contentPane.add(lblNewLabel_1);
+		
+		
 	}
 }

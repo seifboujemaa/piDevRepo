@@ -87,6 +87,7 @@ public class AddTeamPlayers extends JFrame {
 		btnNewButton_1 = new JButton("New button");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				 Team  team = teamService.findTeamByName((String)teams.getSelectedItem());
 				Player player = new Player();
 				player.setFirstName(textField.getText());
