@@ -7,24 +7,30 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import tn.edu.esprit.pidev.artofdev.liveup.client.delegate.NewsServicesDelegate;
-import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Lambda;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Article;
+
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
-public class AddNews extends JFrame {
+import GUI.model.JournalistTableModel;
+import GUI.model.NewsTableModel;
+
+public class AddNewsFreelance extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField title;
 	private JTextField parag;
 	private JTextField day;
-	private JTextField type;
-	private JTextField status;
+	
+	protected static JTable NewsTable;
 
 	/**
 	 * Launch the application.
@@ -33,7 +39,7 @@ public class AddNews extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AddNews frame = new AddNews();
+					AddNewsFreelance frame = new AddNewsFreelance();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,10 +51,10 @@ public class AddNews extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AddNews() {
+	public AddNewsFreelance() {
 		final NewsServicesDelegate newsService = new NewsServicesDelegate();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 700, 461);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -66,14 +72,6 @@ public class AddNews extends JFrame {
 		lblNewLabel_2.setBounds(10, 153, 46, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("Type");
-		lblNewLabel_3.setBounds(10, 178, 46, 14);
-		contentPane.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_4 = new JLabel("Status");
-		lblNewLabel_4.setBounds(10, 203, 46, 14);
-		contentPane.add(lblNewLabel_4);
-		
 		title = new JTextField();
 		title.setBounds(148, -3, 86, 20);
 		contentPane.add(title);
@@ -85,19 +83,9 @@ public class AddNews extends JFrame {
 		parag.setColumns(10);
 		
 		day = new JTextField();
-		day.setBounds(66, 150, 103, 20);
+		day.setBounds(66, 139, 103, 20);
 		contentPane.add(day);
 		day.setColumns(10);
-		
-		type = new JTextField();
-		type.setBounds(76, 175, 86, 20);
-		contentPane.add(type);
-		type.setColumns(10);
-		
-		status = new JTextField();
-		status.setBounds(66, 200, 86, 20);
-		contentPane.add(status);
-		status.setColumns(10);
 		
 		JButton btnPost = new JButton("post");
 		btnPost.addActionListener(new ActionListener() {
@@ -106,13 +94,41 @@ public class AddNews extends JFrame {
 				news.setTitle(title.getText());
 				news.setParagraph(parag.getText());
 				news.setDay(day.getText());
-				news.setType(type.getText());
+				news.setType("freelance");
 				news.setStatus(false);
 				newsService.create(news);
 			}
 		});
-		btnPost.setBounds(229, 228, 89, 23);
+		btnPost.setBounds(134, 187, 89, 23);
 		contentPane.add(btnPost);
+		
+		JScrollPane newsTable = new JScrollPane();
+		newsTable.setBounds(299, 50, 359, 242);
+		contentPane.add(newsTable);
+		
+		NewsTable = new JTable();
+		newsTable.setViewportView(NewsTable);
+		final NewsTableModel newsTableModel = new NewsTableModel();
+		NewsTable.setModel(newsTableModel);
+		
+		JButton btnDelete = new JButton("delete");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+					
+					
+					int selectedRow = NewsTable.getSelectedRow();
+					News news = (News) NewsTable.getValueAt(selectedRow, -1);
+					
+					
+					newsService.delete(news);
+			}
+		});
+		btnDelete.setBounds(144, 221, 89, 23);
+		contentPane.add(btnDelete);
+		
+		JButton btnUpdate = new JButton("update");
+		btnUpdate.setBounds(145, 255, 89, 23);
+		contentPane.add(btnUpdate);
 	}
-
 }

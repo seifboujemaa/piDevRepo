@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.table.DefaultTableModel;
 
 import tn.edu.esprit.pidev.artofdev.liveup.client.Swing.ReporterPhotoViewDeleteSwing;
-import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocater.ServiceLocator;
+import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocator.ServiceLocator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Photo;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.reporter.ReporterRemote;
@@ -108,8 +108,5 @@ public class ReporterServicesDelegate {
 		
 	}
 	
-	public static List<Reporter> findAllReproter() {
-		return getProxy().findAllReporter();
-	
-	}
+
 }

@@ -2,7 +2,7 @@ package tn.edu.esprit.pidev.artofdev.liveup.client.delegate;
 
 import java.util.List;
 
-import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocater.ServiceLocator;
+import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocator.ServiceLocator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Player;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Stadium;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.sadium.StadiumServicesRemote;

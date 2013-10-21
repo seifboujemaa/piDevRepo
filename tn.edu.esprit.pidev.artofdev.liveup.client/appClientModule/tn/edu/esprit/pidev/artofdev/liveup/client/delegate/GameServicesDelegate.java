@@ -2,7 +2,7 @@ package tn.edu.esprit.pidev.artofdev.liveup.client.delegate;
 
 import java.util.List;
 
-import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocater.ServiceLocator;
+import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocator.ServiceLocator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Game;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.game.GameServicesRemote;
@@ -38,9 +38,4 @@ private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup
 		return getProxy().findGameById(idGame);
 		
 	}
-	public static List<Team> findTeamsOnGame(Game game) {
-		return getProxy().findTeamsOnGame(game);
-		
-	}
 }
-	

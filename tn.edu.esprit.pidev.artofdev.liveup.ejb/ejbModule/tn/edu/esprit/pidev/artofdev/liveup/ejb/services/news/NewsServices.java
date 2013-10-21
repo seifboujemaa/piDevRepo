@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Agent;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.News;
 
 @Stateless
@@ -47,7 +48,9 @@ EntityManager entityManager ;
 	@Override
 	public List<News> findAllNews() {
 		Query query=entityManager.createQuery("select n from News n");
-		return query.getResultList();
+		List<News> news = query.getResultList();
+		//System.out.println("EntityManager returned "+journalists.size()+" journalists");
+		return news;
 	}
 
 }
