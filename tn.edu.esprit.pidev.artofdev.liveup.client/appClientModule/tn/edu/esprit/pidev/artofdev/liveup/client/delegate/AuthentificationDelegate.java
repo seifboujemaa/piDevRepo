@@ -5,14 +5,17 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import GUI.SelectFreelance;
 import GUI.SelectJournalist;
 
 import tn.edu.esprit.pidev.artofdev.liveup.client.Swing.AuthentificationSwing;
 import tn.edu.esprit.pidev.artofdev.liveup.client.Swing.ChefEditorArticleSwing;
 import tn.edu.esprit.pidev.artofdev.liveup.client.Swing.ReporterPhotoViewDeleteSwing;
-import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocater.ServiceLocator;
+import tn.edu.esprit.pidev.artofdev.liveup.client.servicelocator.ServiceLocator;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Administrator;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.ChefEditor;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.FreeLance;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Reporter;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.User;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.services.user.UserServicesRemote;
@@ -41,8 +44,26 @@ public class AuthentificationDelegate {
 			
 			if(user instanceof FreeLance)
 			{
-				new SelectJournalist().setVisible(true);
+				new SelectFreelance().setVisible(true);
 			a.setVisible(false);
+			}
+			if(user instanceof Journalist)
+			{
+				new SelectJournalist().setVisible(true);
+				a.setVisible(false);
+			}
+			if(user instanceof Reporter)
+			{
+				new ReporterPhotoViewDeleteSwing().setVisible(true);
+				a.setVisible(false);
+			}
+			if(user instanceof ChefEditor)
+			{
+				new ChefEditorArticleSwing().setVisible(true);
+				a.setVisible(false);
+			}
+			if(user instanceof Administrator){
+				
 			}
 		}
 		//if(journalist)

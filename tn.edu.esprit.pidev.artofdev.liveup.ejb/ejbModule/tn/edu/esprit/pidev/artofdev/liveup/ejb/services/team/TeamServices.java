@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Game;
+import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Journalist;
 import tn.edu.esprit.pidev.artofdev.liveup.ejb.persistences.Team;
 
 /**
@@ -77,7 +78,8 @@ entityManager.merge(team);
 	@Override
 	public List<Game> findGameOnTeam(Team team) {
 		Query query=entityManager.createQuery("select game from Team  where idTeam='" + team.getIdTeam() +  "' " );
-		return query.getResultList();	
+		List<Game> games = query.getResultList();
+		return games;
 	}
 
 }

@@ -93,7 +93,7 @@ public class Schedule extends JFrame {
 						 String time = game.getTime();
 						 String ref = game.getRefree();
 						 String group = game.getGroupe();
-						 teams = gameService.findTeamsOnGame(game);
+						 teams = GameServicesDelegate.findTeamsOnGame(game);
 						 team1=teams.get(0).getName();
 						 team2=teams.get(1).getName();
 						 int goal1 = game.getTeam1Goals();

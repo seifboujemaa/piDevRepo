@@ -30,6 +30,11 @@ private static final String jndiName = "ejb:/tn.edu.esprit.pidev.artofdev.liveup
 		getProxy().deleteGame(game);
 		
 	}
+	
+	public static List<Team> findTeamsOnGame(Game game){
+		return getProxy().findTeamsOnGame(game);
+		
+	}
 	public static List<Game> findAllGame() {
 		return getProxy().findAllGame();
 		
