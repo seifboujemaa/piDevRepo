@@ -130,7 +130,7 @@ public class AddArticleFreelance extends JFrame {
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(328, 26, 251, 191);
+		scrollPane.setBounds(292, 26, 288, 191);
 		contentPane.add(scrollPane);
 		
 	
